@@ -5,7 +5,7 @@ client.connect();
 
 // get all users
 user.get('/', async (req, res) => {
-    let sql = "SELECT * FROM users ORDER BY user_id"
+    let sql = "SELECT * FROM user ORDER BY user_id"
     client.query(sql, [], (err, result) => {
         if (err) {
             return console.error(err.message);
@@ -18,7 +18,7 @@ user.get('/', async (req, res) => {
 // get a specific user
 user.get('/:id', async (req, res) => {
   const id = req.params.id;
-  let sql = "SELECT * FROM posts WHERE user_id = $1";
+  let sql = "SELECT * FROM user WHERE user_id = $1";
   client.query(sql, [id], (err, result) => {
       if (err) {
           return console.error(err.message);
@@ -39,7 +39,7 @@ user.post('/', async (req, res) => {
   const password = req.body.password
   const role = req.body.role
   const website = req.body.website
-  let sql = 'INSERT INTO posts(user_id, name, bio, email, github, linkedin, posts, password, role, website) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9)'
+  let sql = 'INSERT INTO user(user_id, name, bio, email, github, linkedin, posts, password, role, website) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9)'
   client.query(sql, [name, bio, email, github, linkedin, posts, password, role, website], (err, result) => {
       if (err) {
           return console.error(err.message);
@@ -54,7 +54,7 @@ user.post('/', async (req, res) => {
 // delete a user
 user.delete('/:id', async (req, res) => {
   id = req.params.id
-  let sql = "DELETE FROM post WHERE user_id = $1"
+  let sql = "DELETE FROM user WHERE user_id = $1"
   client.query(sql, [id], (err, result) => {
       if (err) {
           return console.error(err.message);
