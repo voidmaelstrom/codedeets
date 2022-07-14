@@ -1,8 +1,6 @@
 const posts = require('express').Router();
 const {client} = require('../models/middleware')
 
-client.connect();
-
 // get all posts
 posts.get('/', async (req, res) => {
     let sql = "SELECT * FROM posts ORDER BY post_id"
