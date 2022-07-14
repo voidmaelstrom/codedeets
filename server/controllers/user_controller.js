@@ -1,8 +1,6 @@
 const user = require('express').Router();
 const {client} = require('../models/middleware')
 
-client.connect();
-
 // get all users
 user.get('/', async (req, res) => {
     let sql = "SELECT * FROM public.user ORDER BY user_id"
