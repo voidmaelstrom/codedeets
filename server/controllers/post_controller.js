@@ -32,9 +32,9 @@ posts.get('/:id', async (req, res) => {
 posts.post('/', async (req, res) => {
     const name = req.body.name
     const file = req.body.file
-    const tags = req.body.string
-    let sql = 'INSERT INTO posts(post_id, name, file, tags) VALUES(DEFAULT, $1, $2, $3)'
-    client.query(sql, [name, file, tags], (err, result) => {
+    const tag = req.body.tag
+    let sql = 'INSERT INTO posts(post_id, name, file, tag) VALUES(DEFAULT, $1, $2, $3)'
+    client.query(sql, [name, file, tag], (err, result) => {
         if (err) {
             return console.error(err.message);
         }
@@ -50,9 +50,9 @@ posts.put('/:id', async (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const file = req.body.file
-  const tags = req.body.string
-  let sql = "UPDATE posts SET name = $1, file = $2, tags = $3 WHERE post_id = $5"
-  client.query(sql, [name, file, tags, id], (err, result) => {
+  const tag = req.body.tag
+  let sql = "UPDATE posts SET name = $1, file = $2, tag = $3 WHERE post_id = $5"
+  client.query(sql, [name, file, tag, id], (err, result) => {
       if (err) {
           return console.error(err.message);
       }
