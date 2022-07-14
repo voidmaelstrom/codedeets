@@ -33,12 +33,11 @@ user.post('/', async (req, res) => {
   const email = req.body.email
   const github = req.body.github
   const linkedin = req.body.linkedin
-  const posts = req.body.posts
   const password = req.body.password
-  const role = req.body.role
   const website = req.body.website
-  let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, posts, password, role, website) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9)'
-  client.query(sql, [name, bio, email, github, linkedin, posts, password, role, website], (err, result) => {
+  const role = req.body.role
+  let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, role) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'
+  client.query(sql, [name, bio, email, github, linkedin, password, website, role], (err, result) => {
       if (err) {
           return console.error(err.message);
       }
