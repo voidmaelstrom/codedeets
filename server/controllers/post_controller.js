@@ -30,6 +30,7 @@ posts.get('/:id', async (req, res) => {
 posts.post('/', async (req, res) => {
     //const name = req.body.name
     const file = req.body.file
+    console.log(file)
     const tag = req.body.tag
     let sql = 'INSERT INTO posts(post_id, file, tag) VALUES(DEFAULT, $1, $2)'
     client.query(sql, [file, tag], (err, result) => {
