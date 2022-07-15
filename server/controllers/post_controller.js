@@ -28,11 +28,11 @@ posts.get('/:id', async (req, res) => {
 
 // create a post
 posts.post('/', async (req, res) => {
-    const name = req.body.name
+    //const name = req.body.name
     const file = req.body.file
     const tag = req.body.tag
-    let sql = 'INSERT INTO posts(post_id, name, file, tag) VALUES(DEFAULT, $1, $2, $3)'
-    client.query(sql, [name, file, tag], (err, result) => {
+    let sql = 'INSERT INTO posts(post_id, file, tag) VALUES(DEFAULT, $1, $2)'
+    client.query(sql, [file, tag], (err, result) => {
         if (err) {
             return console.error(err.message);
         }
