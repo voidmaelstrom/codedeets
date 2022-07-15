@@ -7,8 +7,9 @@ user.get('/', async (req, res) => {
     client.query(sql, [], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json(result.rows)
         }
-        res.status(200).json(result.rows)
     })
     client.end;
 })
@@ -20,8 +21,9 @@ user.get('/:id', async (req, res) => {
   client.query(sql, [id], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(200).json(result.rows)
       }
-      res.status(200).json(result.rows)
   })
   client.end;
 })
@@ -40,13 +42,38 @@ user.post('/', async (req, res) => {
   client.query(sql, [name, bio, email, github, linkedin, password, website, role], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(200).json({
+            message: 'Successfully created user'
+        })
       }
-      res.status(200).json({
-          message: 'Successfully created user'
-      })
   })
   client.end;
 })
+
+// update a user
+user.put('/:id', async (req, res) => {
+    const user_id = req.params.id
+    const name = req.body.name
+    const bio = req.body.bio
+    const email = req.body.email
+    const github = req.body.github
+    const linkedin = req.body.linkedin
+    const password = req.body.password
+    const website = req.body.website
+    const role = req.body.role
+    let sql = 'UPDATE public.user SET name = $1, bio = $2, email = $3, github = $4, linkedin = $5, password = $6, website = $7, role = $8 WHERE user_id = $9'
+    client.query(sql, [name, bio, email, github, linkedin, password, website, role, user_id], (err, result) => {
+        if (err) {
+            return console.error(err.message);
+        } else {
+          res.status(200).json({
+              message: 'Successfully updated user'
+          })
+        }
+    })
+    client.end;
+  })
 
 // delete a user
 user.delete('/:id', async (req, res) => {
@@ -55,10 +82,11 @@ user.delete('/:id', async (req, res) => {
   client.query(sql, [id], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(200).json({
+            message: 'User successfully deleted'
+          })
       }
-      res.status(200).json({
-        message: 'User successfully deleted'
-      })
   })
   client.end;
 })
