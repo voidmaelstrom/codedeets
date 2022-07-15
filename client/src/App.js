@@ -1,23 +1,16 @@
 import './App.css';
+import Navbar from './Components/Navbar/Navbar'
 import PostContainer from './Components/PostContainer/PostContainer';
+import UserList from './Components/UserList/UserList';
 
 const App = () => {
 
-<<<<<<< HEAD
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Codedeets</h1>
-        <PostContainer />
-      </header>
-=======
-import Navbar from './components/navbar/Navbar';
-
-function App() {
-  return (
-    <div className="App">
-        <Navbar/>
->>>>>>> main
+    <div className="container">
+      <div className="navbar"><Navbar /></div>
+      <div className="users"><h1>User List</h1><UserList /></div>
+      <div className="posts"><h1>Recent Posts</h1><PostContainer /></div>
+      <div className="footer">Footer</div>
     </div>
   );
 }
