@@ -7,8 +7,9 @@ posts.get('/', async (req, res) => {
     client.query(sql, [], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json(result.rows)
         }
-        res.status(200).json(result.rows)
     })
     client.end;
 })
@@ -20,8 +21,9 @@ posts.get('/:id', async (req, res) => {
     client.query(sql, [id], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json(result.rows)
         }
-        res.status(200).json(result.rows)
     })
     client.end;
 })
@@ -35,15 +37,16 @@ posts.post('/', async (req, res) => {
     client.query(sql, [file, tag, user_id], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json({
+                message: 'Successfully created post'
+            })
         }
-        res.status(200).json({
-            message: 'Successfully created post'
-        })
     })
     client.end;
 })
 
-// edit a post
+// update a post
 posts.put('/:id', async (req, res) => {
   const post_id = req.params.id
   const file = req.body.file
@@ -53,10 +56,11 @@ posts.put('/:id', async (req, res) => {
   client.query(sql, [file, tag, user_id, post_id], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(202).json({
+            message: 'Post successfully updated'
+          })
       }
-      res.status(202).json({
-        message: 'Post successfully updated'
-      })
   })
   client.end;
 })
@@ -68,10 +72,11 @@ posts.delete('/:id', async (req, res) => {
   client.query(sql, [id], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(200).json({
+            message: 'Post successfully deleted'
+          })
       }
-      res.status(200).json({
-        message: 'Post successfully deleted'
-      })
   })
   client.end;
 })
