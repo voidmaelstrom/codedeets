@@ -1,3 +1,6 @@
+// Markdown Editor Documentation
+// https://github.com/uiwjs/react-md-editor
+
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
 
