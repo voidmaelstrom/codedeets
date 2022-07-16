@@ -1,7 +1,7 @@
 import './App.css';
-import Navbar from './Components/Navbar/Navbar'
-import PostContainer from './Components/PostContainer/PostContainer';
-import UserList from './Components/UserList/UserList';
+import Navbar from './components/Navbar/Navbar'
+import PostContainer from './components/PostContainer/PostContainer';
+import UserList from './components/UserList/UserList';
 
 const App = () => {
 
