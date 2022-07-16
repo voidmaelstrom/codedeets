@@ -1,4 +1,7 @@
 const posts = require('express').Router();
+const multer = require('multer')
+const upload = multer({dest: './client/public/assets'})
+
 const {client} = require('../models/middleware')
 
 // get all posts
@@ -31,6 +34,7 @@ posts.get('/:id', async (req, res) => {
 // create a post
 posts.post('/', async (req, res) => {
     const file = req.body.file
+    console.log(req.files, req.body)
     const tag = req.body.tag
     const user_id = req.body.user_id
     let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
