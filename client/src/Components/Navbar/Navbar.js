@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 import { theme } from './theme'
 
-let pages = ['Getting Started', 'External Resources', 'TBD']
-let linksArray = ['/gettingstarted', '/thiscouldbewhatever']
+let pages = ['Getting Started', 'Resources', 'Form']
+let linksArray = ['/gettingstarted', '/resources', '/form']
 let userButtons = ['Log in', 'Sign up']
 
 
@@ -64,23 +64,6 @@ const Navbar = () => {
                                     >
                                         <Link to={linksArray[i] || '#'}>{page}</Link>
                                     </Button>
-
-                                    // <Typography
-                                    //     variant='h5'
-                                    //     noWrap
-                                    //     component="a"
-                                    //     href="/gettingstarted"
-                                    //     sx={{
-                                    //         mr: 2,
-                                    //         display: { xs: 'flex', md: 'none' },
-                                    //         flexGrow: 1,
-                                    //         fontWeight: 800,
-                                    //         color: 'inherit',
-                                    //         textDecoration: 'none'
-                                    //     }}
-                                    // >
-
-                                    // </Typography>
                                 ))}
                             </Box>
 
@@ -104,8 +87,6 @@ const Navbar = () => {
                                     </Button>
                                 ))}
                             </Box>
-
-
 
                         </Toolbar>
 

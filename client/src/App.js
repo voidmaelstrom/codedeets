@@ -7,6 +7,7 @@ import GettingStarted from './Components/GettingStarted/GettingStarted';
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
 
 import Form from './Components/Form/Form';
+import Resources from './Components/Resources/Resources';
 //import MarkdownPostContainer from './components/MarkdownPostContainer/MarkdownPostContainer';
 
 
@@ -32,26 +33,21 @@ const App = () => {
     <div className="container">
       <Router>
         <Navbar />
-        {/*Added form here simply for ease of file uploading testing  */}
-        {/* <Form></Form> */}
-        <div className="users"><h1>User List</h1><UserList /></div>
-        {/* <div className="posts"><h1>Recent Posts</h1><PostContainer /></div> */}
+        <UserList />
 
-        {/* <- Where the route's component will render */}
+        {/* Div container where all routed components will render */}
         <div className="display">
           <Routes>
             <Route path="/" element={<PostContainer />} />
             <Route path="/gettingstarted" element={<GettingStarted />} />
-
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/form" element={<Form />} />
           </Routes>
         </div>
 
         <div className="footer">Footer</div>
       </Router>
     </div>
-
-
-
   );
 }
 
