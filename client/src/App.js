@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar'
 import PostContainer from './Components/PostContainer/PostContainer';
 import UserList from './Components/UserList/UserList';
+import GettingStarted from './Components/GettingStarted/GettingStarted';
 
 import Form from './Components/Form/Form';
 //import MarkdownPostContainer from './components/MarkdownPostContainer/MarkdownPostContainer';
