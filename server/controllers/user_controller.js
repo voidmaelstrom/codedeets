@@ -1,5 +1,6 @@
 const user = require('express').Router();
 const {client} = require('../models/middleware')
+const bcrypt = require('bcrypt')
 
 // get all users
 user.get('/', async (req, res) => {
@@ -35,7 +36,7 @@ user.post('/', async (req, res) => {
   const email = req.body.email
   const github = req.body.github
   const linkedin = req.body.linkedin
-  const password = req.body.password
+  const password = await bcrypt.hash(req.body.password, 10)
   const website = req.body.website
   const admin = req.body.admin
   let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, admin) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'

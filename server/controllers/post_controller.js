@@ -1,7 +1,7 @@
 const posts = require('express').Router();
+const jwt = require('json-web-token')
 const multer = require('multer')
 const upload = multer({dest: './client/public/assets'})
-
 const {client} = require('../models/middleware')
 
 // get all posts
@@ -33,12 +33,39 @@ posts.get('/:id', async (req, res) => {
 
 // create a post
 posts.post('/', async (req, res) => {
+
+    let currentUser;
+    try {
+        const [method, token] = req.headers.authorization.split(' ')
+        if (method == 'Bearer') {
+            const result = await jwt.decode(process.env.JWT_SECRET, token)
+            const { id } = result.value
+            let sql = "SELECT * FROM public.user WHERE user_id = $1";
+            currentUser = await client.query(sql, [id], (err, result) => {
+                if (err) {
+                    return console.error(err.message);
+                } else {
+                    res.status(200).json(result.rows)
+                }
+            })
+            client.end;
+        }
+    } catch {
+        currentUser = null
+    }
+
+    if (!currentUser) {
+        return res.status(404).json({
+            message: 'You must be logged in to write a blog.'
+        })
+    }
+
     const file = req.body.file
     console.log(req.files, req.body)
     const tag = req.body.tag
-    const user_id = req.body.user_id
+    const userId = currentUser.user_id
     let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
-    client.query(sql, [file, tag, user_id], (err, result) => {
+    client.query(sql, [file, tag, userId], (err, result) => {
         if (err) {
             return console.error(err.message);
         } else {
