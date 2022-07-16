@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './Components/Navbar/Navbar'
-import PostContainer from './Components/PostContainer/PostContainer';
-import UserList from './Components/UserList/UserList';
+import Navbar from './components/Navbar/Navbar'
+import PostContainer from './components/PostContainer/PostContainer';
+import UserList from './components/UserList/UserList';
 
 import Form from './components/Form/Form';
-import Navbar from './components/navbar/Navbar';
 //import MarkdownPostContainer from './components/MarkdownPostContainer/MarkdownPostContainer';
 
       
@@ -29,6 +28,8 @@ useEffect(() => {
   return (
     <div className="container">
       <div className="navbar"><Navbar /></div>
+      {/*Added form here simply for ease of file uploading testing  */}
+      <Form></Form>
       <div className="users"><h1>User List</h1><UserList /></div>
       <div className="posts"><h1>Recent Posts</h1><PostContainer /></div>
       <div className="footer">Footer</div>
