@@ -1,10 +1,18 @@
+import React from "react";
+import MDEditor from '@uiw/react-md-editor';
+
 
 const GettingStarted = () => {
-    return(
+    const [value, setValue] = React.useState("**Hello world!!!**");
+    return (
         <div className="gettingStarted">
-            <h1>Getting Started</h1>
+            <MDEditor
+                value={value}
+                onChange={setValue}
+            />
+            <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
         </div>
-    )
+    );
 }
 
 export default GettingStarted;
