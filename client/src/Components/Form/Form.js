@@ -45,7 +45,7 @@ function handleChange(e){
 //POST call
 function handleSubmit(e) {
   e.preventDefault()
-  const url = 'http://localhost:5000/posts'
+  const url = 'http://localhost:5000/posts/9/uploadFile'
   const formData = new FormData()
   formData.append('file', file)
   formData.append('fileName', file.name)
@@ -54,7 +54,7 @@ function handleSubmit(e) {
       'content-type' : 'multipart/form-data'
   }
 }
-  axios.post(url, formData, config).then((response) => {
+  axios.put(url, formData, config).then((response) => {
     console.log(response.data)
   })
 }
@@ -63,7 +63,7 @@ function handleSubmit(e) {
   return (
     <form onSubmit={handleSubmit}>
       <h1>File Upload Test</h1>
-      <input type="file" onChange={handleChange}/>
+      <input type="file" name="fileName" onChange={handleChange}/>
       <button type="submit">Upload</button>
     </form>
 

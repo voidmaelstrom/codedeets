@@ -2,7 +2,13 @@ const posts = require('express').Router();
 const jwt = require('json-web-token')
 const multer = require('multer')
 const upload = multer({dest: './client/public/assets'})
-const {client} = require('../models/middleware')
+const bodyParser = require('body-parser')
+const {client} = require('../models/middleware');
+const { application } = require('express');
+
+// use stuff
+posts.use(bodyParser.json())
+posts.use(bodyParser.urlencoded({ extended: true }));
 
 // get all posts
 posts.get('/', async (req, res) => {
@@ -29,6 +35,25 @@ posts.get('/:id', async (req, res) => {
         }
     })
     client.end;
+})
+
+// upload file to specific post
+posts.put('/:id/uploadFile', upload.single('fileName'), (req, res) => {
+    const post_id = req.params.id
+    const file = req.file
+    console.log('I am here!!', file)
+    if (!file) {
+        return res.status(400).send({ message: 'Please upload a file.' });
+    }
+    // let sql = "UPDATE posts SET file = null WHERE post_id = $2 AND UPDATE posts SET file = $1 WHERE post_id = $2";
+    let sql = "UPDATE posts SET file = $1 WHERE post_id = $2";
+    client.query(sql, [file, post_id], (err, result) => {
+        if (err) {
+            return console.error('Upload file request error:', err.message);
+        } else {
+            return res.send({ message: 'File is successfully uploaded.', file });
+        }
+    });
 })
 
 // create a post
