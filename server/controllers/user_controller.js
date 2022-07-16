@@ -37,9 +37,9 @@ user.post('/', async (req, res) => {
   const linkedin = req.body.linkedin
   const password = req.body.password
   const website = req.body.website
-  const role = req.body.role
-  let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, role) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'
-  client.query(sql, [name, bio, email, github, linkedin, password, website, role], (err, result) => {
+  const admin = req.body.admin
+  let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, admin) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'
+  client.query(sql, [name, bio, email, github, linkedin, password, website, admin], (err, result) => {
       if (err) {
           return console.error(err.message);
       } else {
@@ -61,9 +61,9 @@ user.put('/:id', async (req, res) => {
     const linkedin = req.body.linkedin
     const password = req.body.password
     const website = req.body.website
-    const role = req.body.role
-    let sql = 'UPDATE public.user SET name = $1, bio = $2, email = $3, github = $4, linkedin = $5, password = $6, website = $7, role = $8 WHERE user_id = $9'
-    client.query(sql, [name, bio, email, github, linkedin, password, website, role, user_id], (err, result) => {
+    const admin = req.body.admin
+    let sql = 'UPDATE public.user SET name = $1, bio = $2, email = $3, github = $4, linkedin = $5, password = $6, website = $7, admin = $8 WHERE user_id = $9'
+    client.query(sql, [name, bio, email, github, linkedin, password, website, admin, user_id], (err, result) => {
         if (err) {
             return console.error(err.message);
         } else {
