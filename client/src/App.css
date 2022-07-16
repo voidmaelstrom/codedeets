@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+/* CSS Grid Layout: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout */
+
+/* Future CSS for Mobile Media Queries */
+/* ... */
+
+.container {
+    background-color: aquamarine;
+    height: 100vh; /* Use 100% of the view window height*/
+    width: 100vw; /* Use 100% of the view window width*/
+    display: grid;
+    grid-template: .25fr 5fr 1fr / 1fr 4fr;
+    gap: 10px; /* Spacing around grid components */
+    grid-template-areas: /* Specify the template area below */
+    "navbar navbar"
+    "users posts"
+    "footer footer"; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+    /* background-color: rgb(215, 250, 247);  */
+    grid-area: navbar;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.users {
+    background-color: rgb(164, 245, 98);
+    grid-area: users;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.posts {
+    background-color: antiquewhite;
+    grid-area: posts;
 }
 
-.App-link {
-  color: #61dafb;
+.footer {
+    background-color: rgb(105, 185, 238);
+    grid-area: footer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

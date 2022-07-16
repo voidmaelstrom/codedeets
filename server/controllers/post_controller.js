@@ -10,8 +10,9 @@ posts.get('/', async (req, res) => {
     client.query(sql, [], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json(result.rows)
         }
-        res.status(200).json(result.rows)
     })
     client.end;
 })
@@ -23,44 +24,47 @@ posts.get('/:id', async (req, res) => {
     client.query(sql, [id], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json(result.rows)
         }
-        res.status(200).json(result.rows)
     })
     client.end;
 })
 
 // create a post
-posts.post('/', upload.single('markdown'), async (req, res) => {
-    //const name = req.body.name
+posts.post('/', async (req, res) => {
     const file = req.body.file
     console.log(req.files, req.body)
     const tag = req.body.tag
-    let sql = 'INSERT INTO posts(post_id, file, tag) VALUES(DEFAULT, $1, $2)'
-    client.query(sql, [file, tag], (err, result) => {
+    const user_id = req.body.user_id
+    let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
+    client.query(sql, [file, tag, user_id], (err, result) => {
         if (err) {
             return console.error(err.message);
+        } else {
+            res.status(200).json({
+                message: 'Successfully created post'
+            })
         }
-        res.status(200).json({
-            message: 'Successfully created post'
-        })
     })
     client.end;
 })
 
-// edit a post
+// update a post
 posts.put('/:id', async (req, res) => {
-  const id = req.params.id
-  const name = req.body.name
+  const post_id = req.params.id
   const file = req.body.file
   const tag = req.body.tag
-  let sql = "UPDATE posts SET name = $1, file = $2, tag = $3 WHERE post_id = $5"
-  client.query(sql, [name, file, tag, id], (err, result) => {
+  const user_id = req.body.user_id
+  let sql = "UPDATE posts SET file = $1, tag = $2, user_id = $3 WHERE post_id = $4"
+  client.query(sql, [file, tag, user_id, post_id], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(202).json({
+            message: 'Post successfully updated'
+          })
       }
-      res.status(202).json({
-        message: 'Post successfully updated'
-      })
   })
   client.end;
 })
@@ -68,14 +72,15 @@ posts.put('/:id', async (req, res) => {
 // delete a post
 posts.delete('/:id', async (req, res) => {
   id = req.params.id
-  let sql = "DELETE FROM post WHERE post_id = $1"
+  let sql = "DELETE FROM posts WHERE post_id = $1"
   client.query(sql, [id], (err, result) => {
       if (err) {
           return console.error(err.message);
+      } else {
+        res.status(200).json({
+            message: 'Post successfully deleted'
+          })
       }
-      res.status(200).json({
-        message: 'Post successfully deleted'
-      })
   })
   client.end;
 })
