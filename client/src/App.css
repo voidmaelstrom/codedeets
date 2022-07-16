@@ -8,7 +8,7 @@
     height: 100vh; /* Use 100% of the view window height*/
     width: 100vw; /* Use 100% of the view window width*/
     display: grid;
-    grid-template: .25fr 5fr 1fr / 1fr 4fr;
+    grid-template: .25fr 5fr .25fr / 1fr 4fr;
     gap: 10px; /* Spacing around grid components */
     grid-template-areas: /* Specify the template area below */
     "navbar navbar"
