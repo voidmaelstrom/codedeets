@@ -36,3 +36,8 @@
     grid-area: footer;
 }
 
+.error404, img {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
