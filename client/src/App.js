@@ -8,10 +8,10 @@ import Navbar from './components/navbar/Navbar';
 function App() {
   let [data, setData] = useState([null])
 
-  
+  // General set up for API call
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5050/posts')
+      const response = await fetch('http://localhost:5000/posts')
       const resData = await response.json()
       console.log(resData)
       setData(resData)
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
         <Navbar/>
-        <Form></Form>
+        
         
     </div>
   );
