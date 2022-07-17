@@ -37,12 +37,22 @@ const Form = () => {
 //SECOND ATTEMPT USING EXAMPLE FROM: https://www.filestack.com/fileschool/react/react-file-upload/
 
 const [file, setFile] = useState()
+const fileByteArray = []
+let fileReader = new FileReader()
 
 function handleChange(e){
   setFile(e.target.files[0])
-  let fileReader = new FileReader()
   fileReader.readAsArrayBuffer(file)
-  
+  fileReader.onloadend = (evt) => {
+    if (evt.target.readyState === FileReader.DONE){
+      const arrayBuffer = evt.target.result,
+        array = new Uint8Array(arrayBuffer)
+      for (const a of array) {
+        fileByteArray.push(a)
+      }
+      console.log(fileByteArray)
+    }
+  }
 }
  
 // Array Buffer 
