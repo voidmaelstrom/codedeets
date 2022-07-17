@@ -40,7 +40,13 @@ const [file, setFile] = useState()
 
 function handleChange(e){
   setFile(e.target.files[0])
+  let fileReader = new FileReader()
+  fileReader.readAsArrayBuffer(file)
+  
 }
+ 
+// Array Buffer 
+
 
 //POST call
 function handleSubmit(e) {
