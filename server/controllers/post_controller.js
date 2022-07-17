@@ -1,14 +1,29 @@
+const express = require('express')
 const posts = require('express').Router();
+const path = require('path')
 const jwt = require('json-web-token')
 const multer = require('multer')
-const upload = multer({dest: './client/public/assets'})
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../client/public/assets');
+     },
+     filename: function (req, file, cb) {
+        console.log(`${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
+        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+     }
+});
+const upload = multer({
+    storage: storage
+});
+// const upload = multer({dest: '../client/public/assets'})
 const bodyParser = require('body-parser')
 const {client} = require('../models/middleware');
 const { application } = require('express');
 
 // use stuff
 posts.use(bodyParser.json())
-posts.use(bodyParser.urlencoded({ extended: true }));
+posts.use(bodyParser.urlencoded({ extended: true }))
+posts.use('../client/public/assets', express.static('assets'))
 
 // get all posts
 posts.get('/', async (req, res) => {
@@ -38,9 +53,10 @@ posts.get('/:id', async (req, res) => {
 })
 
 // upload file to specific post
-posts.put('/:id/uploadFile', upload.single('fileName'), (req, res) => {
+posts.put('/:id/uploadFile', upload.any(), (req, res, next) => {
     const post_id = req.params.id
-    const file = req.file
+    const file = req.files
+    console.log(req.files)
     console.log('I am here!!', file)
     if (!file) {
         return res.status(400).send({ message: 'Please upload a file.' });
