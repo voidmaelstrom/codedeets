@@ -55,14 +55,15 @@ posts.get('/:id', async (req, res) => {
 // upload file to specific post
 posts.put('/:id/uploadFile', upload.any(), (req, res, next) => {
     const post_id = req.params.id
-    const file = req.files
-    console.log(req.files)
+    // const file = req.files
+    const file = req.files[0].path
+    // console.log(req.files)
     console.log('I am here!!', file)
     if (!file) {
         return res.status(400).send({ message: 'Please upload a file.' });
     }
     // let sql = "UPDATE posts SET file = null WHERE post_id = $2 AND UPDATE posts SET file = $1 WHERE post_id = $2";
-    let sql = "UPDATE posts SET file = $1 WHERE post_id = $2";
+    let sql = "UPDATE posts SET file = pg_read_binary_file($1)::bytea WHERE post_id = $2";
     client.query(sql, [file, post_id], (err, result) => {
         if (err) {
             return console.error('Upload file request error:', err.message);
