@@ -10,7 +10,7 @@ auth.post('/', async (req, res) => {
     let user = await client.query(sql, [email])
 
     user = user.rows[0]
-    console.log(user.password)
+    //console.log(user.password)
 
     if (!user || !await bcrypt.compare(req.body.password, user.password)) {
         res.status(404).json({
