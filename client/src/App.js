@@ -39,6 +39,7 @@ const App = () => {
         {/* Div container where all routed components will render */}
         <div className="display">
           <Routes>
+            
             <Route path="/" element={<PostContainer />} />
             <Route path="/gettingstarted" element={<GettingStarted />} />
             <Route path="/resources" element={<Resources />} />
