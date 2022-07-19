@@ -14,14 +14,14 @@ import Resources from './Components/Resources/Resources';
 
 const App = () => {
 
-  let [data, setData] = useState([null])
+  let [data, setData] = useState([{}])
+
 
   // General set up for API call
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://localhost:5000/posts')
       const resData = await response.json()
-      console.log(resData)
       setData(resData)
     }
     fetchData()
@@ -30,17 +30,16 @@ const App = () => {
 
 
   return (
-
     <div className="container">
       <Router>
         <Navbar />
         <UserList />
-
+        {/*renderData(data)*/}
         {/* Div container where all routed components will render */}
         <div className="display">
-          <Routes>
-            <Route path="/" element={<PostContainer />} />
-            <Route path="/gettingstarted" element={<GettingStarted />} />
+          <Routes>    
+            <Route path="/" element={<PostContainer  />} />
+            <Route path="/gettingstarted" element={<GettingStarted data={data} />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
             {/* Error 404 Route */}
