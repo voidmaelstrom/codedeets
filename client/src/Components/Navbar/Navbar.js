@@ -1,9 +1,10 @@
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import { Toolbar, Box, Button, IconButton, ThemeProvider } from '@mui/material'
+import { Toolbar, Box, Button, IconButton, ThemeProvider, Modal } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import { theme } from './theme'
 
@@ -13,6 +14,10 @@ let userButtons = ['Log in', 'Sign up']
 
 
 const Navbar = () => {
+let [open, setOpen] = useState(false)
+let handleOpen = setOpen(true)
+let handleClose = setOpen(false)
+
     return (
         <div className="navbar">
             <ThemeProvider theme={theme}>
@@ -76,16 +81,22 @@ const Navbar = () => {
                                     <MenuIcon fontSize='large' />
                                 </IconButton>
                             </Box>
-
+                            
                             <Box sx={{ display: 'flex' }}>
                                 {userButtons.map((userButton) => (
                                     <Button
+                                        onClick={handleOpen}
                                         key={userButton}
                                         sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
                                     >
                                         {userButton}
                                     </Button>
                                 ))}
+                                <Modal
+                                    
+                                >
+
+                                </Modal>
                             </Box>
 
                         </Toolbar>
