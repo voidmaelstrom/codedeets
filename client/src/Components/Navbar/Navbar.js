@@ -14,9 +14,7 @@ let userButtons = ['Log in', 'Sign up']
 
 
 const Navbar = () => {
-let [open, setOpen] = useState(false)
-let handleOpen = setOpen(true)
-let handleClose = setOpen(false)
+
 
     return (
         <div className="navbar">
@@ -83,20 +81,7 @@ let handleClose = setOpen(false)
                             </Box>
                             
                             <Box sx={{ display: 'flex' }}>
-                                {userButtons.map((userButton) => (
-                                    <Button
-                                        onClick={handleOpen}
-                                        key={userButton}
-                                        sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
-                                    >
-                                        {userButton}
-                                    </Button>
-                                ))}
-                                <Modal
-                                    
-                                >
 
-                                </Modal>
                             </Box>
 
                         </Toolbar>

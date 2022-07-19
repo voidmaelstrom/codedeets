@@ -7,6 +7,7 @@ let decoder = new TextDecoder("utf-8")
 function renderData(props, i){  
     if(props.data != null){
       try{
+        console.log(props.data[i])
       let arrayBuffer = new Uint8Array(props.data[i].file.data)
       let decodedArray = decoder.decode(arrayBuffer)
       return(
