@@ -2,7 +2,7 @@ import Card from "../../Card"
 import { Grid } from "@material-ui/core"
 // import { Link } from "react-router-dom"
 
-const PostContainer = () => {
+const PostContainer = (data) => {
 
     return(
         <Grid container spacing={4}>

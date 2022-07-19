@@ -14,32 +14,41 @@ import Resources from './Components/Resources/Resources';
 
 const App = () => {
 
-  let [data, setData] = useState([null])
+  let [data, setData] = useState([{}])
+  let decoder = new TextDecoder("utf-8")
 
   // General set up for API call
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://localhost:5000/posts')
       const resData = await response.json()
-      console.log(resData)
       setData(resData)
     }
     fetchData()
   }, [])
 
-
+  function renderData(data){  
+    if(data != null){
+      try{
+      let arrayBuffer = new Uint8Array(data[0].file.data)
+      console.log(arrayBuffer)
+      return(
+        <h1>{decoder.decode(arrayBuffer)}</h1>
+      )
+      }catch(err){
+        console.log(err)
+      }
+  }}
 
   return (
-
     <div className="container">
       <Router>
         <Navbar />
         <UserList />
-
         {/* Div container where all routed components will render */}
         <div className="display">
-          <Routes>
-            <Route path="/" element={<PostContainer />} />
+          <Routes>    
+            <Route path="/" element={<PostContainer props={data} />} />
             <Route path="/gettingstarted" element={<GettingStarted />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
