@@ -26,6 +26,49 @@
     grid-area: users;
 }
 
+.userpage {
+    background-color: antiquewhite;
+    height: 50vh;
+    width: 79vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.userbio {
+    background-color: aliceblue;
+    grid-column: 1 / 4;
+
+    text-align: center;
+}
+
+.username {
+    background-color: rgb(250, 150, 150);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.userlinked {
+    background-color: rgb(187, 204, 248);
+    grid-column: 1 / 4;
+    text-align: center;
+}
+
+.usergithub {
+    background-color: aqua;
+    grid-column: 1 / 4;
+    text-align: center;
+}
+
+.userportfolio {
+    background-color: rgb(201, 157, 243);
+    grid-column: 1 / 4;
+    text-align: center;
+}
+
 .posts {
     background-color: antiquewhite;
     grid-area: posts;
