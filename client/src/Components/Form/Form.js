@@ -45,16 +45,19 @@ function handleChange(e){
 //POST call
 function handleSubmit(e) {
   e.preventDefault()
-  const url = 'http://localhost:5000/posts/9/uploadFile'
+  // const url = 'http://localhost:5000/posts/9/uploadFile'
+  const url = 'http://localhost:5000/posts'
   const formData = new FormData()
   formData.append('file', file)
+  formData.append('tag', 'TestingTagPostCreate')
+  formData.append('user_id', 3)
   formData.append('fileName', file.name)
   const config = {
     headers: {
       'content-type' : 'multipart/form-data'
   }
 }
-  axios.put(url, formData, config).then((response) => {
+  axios.post(url, formData, config).then((response) => {
     console.log(response.data)
   })
 }
