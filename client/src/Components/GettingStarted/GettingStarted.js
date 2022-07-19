@@ -3,14 +3,16 @@
 
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
+import {renderData} from '../../helper'
+
+const GettingStarted = (props) => {
 
 
-const GettingStarted = () => {
     const [value, setValue] = React.useState("**Hello world!!!**");
     return (
         <div className="gettingStarted">
             <MDEditor
-                value={value}
+                value={renderData(props, 0)}
                 onChange={setValue}
             />
             <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
