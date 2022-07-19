@@ -5,7 +5,8 @@ import PostContainer from './Components/PostContainer/PostContainer';
 import UserList from './Components/UserList/UserList';
 import GettingStarted from './Components/GettingStarted/GettingStarted';
 import Error404 from './Components/Error404/Error404';
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import UserPage from './Components/UserPage/UserPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Form from './Components/Form/Form';
 import Resources from './Components/Resources/Resources';
@@ -42,6 +43,8 @@ const App = () => {
             <Route path="/gettingstarted" element={<GettingStarted data={data} />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
+            {/* Route to UserPage */}
+            <Route path="/user/:userId" component={<UserPage />} />
             {/* Error 404 Route */}
             <Route path="*" element={<Error404 />} />
           </Routes>
