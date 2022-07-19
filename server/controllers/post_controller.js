@@ -2,16 +2,18 @@ const express = require('express')
 const posts = require('express').Router();
 const path = require('path')
 const jwt = require('json-web-token')
+// const tester = require('../../client/public/assets/')
 const multer = require('multer')
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, '../client/public/assets');
-     },
-     filename: function (req, file, cb) {
-        console.log(`${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
-        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-     }
-});
+const storage = multer.memoryStorage()
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, '../client/public/assets');
+//      },
+//      filename: function (req, file, cb) {
+//         console.log(`${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
+//         cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+//      }
+// });
 const upload = multer({
     storage: storage
 });
@@ -56,14 +58,17 @@ posts.get('/:id', async (req, res) => {
 posts.put('/:id/uploadFile', upload.any(), (req, res, next) => {
     const post_id = req.params.id
     // const file = req.files
-    const file = req.files[0].path
-    // console.log(req.files)
-    console.log('I am here!!', file)
+    const file = Uint8Array.from(req.files[0].buffer)
+    // const file = req.files[0].buffer
+    console.log('Multer output', req.files)
+    console.log(req.files[0].path)
+    // setTimeout(() => { console.log('I am here!!', file); }, 5000);
     if (!file) {
         return res.status(400).send({ message: 'Please upload a file.' });
     }
     // let sql = "UPDATE posts SET file = null WHERE post_id = $2 AND UPDATE posts SET file = $1 WHERE post_id = $2";
-    let sql = "UPDATE posts SET file = pg_read_binary_file($1)::bytea WHERE post_id = $2";
+    // let sql = "UPDATE posts SET file = pg_read_binary_file($1)::bytea WHERE post_id = $2";
+    let sql = "UPDATE posts SET file = $1 WHERE post_id = $2"
     client.query(sql, [file, post_id], (err, result) => {
         if (err) {
             return console.error('Upload file request error:', err.message);
