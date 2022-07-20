@@ -2,25 +2,26 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
+import { Button } from '@mui/material'
 
 
 const UserPage = () => {
     const { id } = useParams()
     const [userPage, setUserPage] = useState([])
 
-        // General set up for API call on users
-        useEffect(() => {
-            const API_URL = "http://localhost:5000/user/"
-            const fetchUser = async () => {
-                const response = await fetch(API_URL+`${id}`)
-                const resUsers = await response.json()
-                console.log(resUsers)
-                setUserPage(...resUsers)
-            }
-            fetchUser()
-        }, [id]) 
+    // General set up for API call on users
+    useEffect(() => {
+        const API_URL = "http://localhost:5000/user/"
+        const fetchUser = async () => {
+            const response = await fetch(API_URL + `${id}`)
+            const resUsers = await response.json()
+            console.log(resUsers)
+            setUserPage(...resUsers)
+        }
+        fetchUser()
+    }, [id])
 
-    return(
+    return (
         <div className="userpage">
             <div className="username">
                 <Avatar
@@ -32,19 +33,25 @@ const UserPage = () => {
             </div>
             <div className="userlinked">
                 <h3>LinkedIn</h3>
-                {userPage.linkedin}
+                <Button variant="contained" size="medium">
+                    <a href={userPage.linkedin}>Click Here</a>
+                </Button>
             </div>
             <div className="usergithub">
                 <h3>Github</h3>
-                {userPage.github}
+                <Button variant="contained" size="medium">
+                    <a href={userPage.github}>Click Here</a>
+                </Button>
             </div>
             <div className="userportfolio">
                 <h3>Personal Portfolio Website</h3>
-                {userPage.website}
+                <Button variant="contained" size="medium">
+                    <a href={userPage.website}>Click Here</a>
+                </Button>
             </div>
         </div>
 
-        
+
     )
 }
 

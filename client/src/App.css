@@ -25,6 +25,7 @@
     background-color: rgb(164, 245, 98);
     grid-area: users;
     text-align: center;
+    list-style-type: none;
 }
 
 .userpage {
@@ -82,4 +83,8 @@
     width: 500px;
     height: 500px;
     object-fit: contain;
+}
+
+a {
+    text-decoration: none;
 }
