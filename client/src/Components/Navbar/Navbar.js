@@ -14,7 +14,14 @@ let userButtons = ['Log in', 'Sign up']
 
 
 const Navbar = () => {
-
+    const [open, setOpen] = useState(false)
+    const handleOpen = () =>{
+        let button = 'Log in'
+        if(button === 'Log in'){
+        setOpen(true)
+        }
+    }
+    const handleClose = () => setOpen(false)
 
     return (
         <div className="navbar">
@@ -81,7 +88,21 @@ const Navbar = () => {
                             </Box>
                             
                             <Box sx={{ display: 'flex' }}>
-
+                                    <Button
+                                        key={userButtons[0]}
+                                        onClick={handleOpen}
+                                        sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
+                                    >
+                                        {userButtons[0]}
+                                    </Button>
+                                <Modal
+                                        open = {open}
+                                        onClose = {handleClose}
+                                    >
+                                        <Typography>
+                                            Text in modal
+                                        </Typography>
+                                    </Modal>
                             </Box>
 
                         </Toolbar>
