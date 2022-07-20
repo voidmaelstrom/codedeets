@@ -42,7 +42,7 @@ const App = () => {
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
             {/* Route to UserPage */}
-            <Route path="/user/:user_id" element={<UserPage />} />
+            <Route path="/user/:id" element={<UserPage />} />
             {/* Error 404 Route */}
             <Route path="*" element={<Error404 />} />
           </Routes>
