@@ -15,10 +15,10 @@ import Resources from './Components/Resources/Resources';
 
 const App = () => {
 
+  // useState variable for posts data
   let [data, setData] = useState([{}])
 
-
-  // General set up for API call
+  // General set up for API call on posts
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://localhost:5000/posts')
@@ -27,9 +27,7 @@ const App = () => {
     }
     fetchData()
   }, [])
-
-
-
+ 
   return (
     <div className="container">
       <Router>
@@ -44,7 +42,7 @@ const App = () => {
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
             {/* Route to UserPage */}
-            <Route path="/user/:userId" component={<UserPage />} />
+            <Route path="/user/:id" element={<UserPage />} />
             {/* Error 404 Route */}
             <Route path="*" element={<Error404 />} />
           </Routes>
