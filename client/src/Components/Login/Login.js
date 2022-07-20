@@ -2,7 +2,7 @@ import { Button, Modal, Box, Paper, TextField, Checkbox,  } from "@mui/material"
 import { useState } from "react"
 import style from "./style"
 
-const SignUp = () => {
+const Login = () => {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -12,10 +12,10 @@ const SignUp = () => {
         <Button
             sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
             onClick={handleOpen}
-        >Signup</Button>
+        >Login</Button>
         <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
-            <form action={'http://localhost:5050/user'} method='POST'>
+            <form action={'http://localhost:5050/auth'} method='POST'>
                 <TextField
                     sx = {{minWidth :'70%', margin: "15px"}}
                     required
@@ -32,25 +32,7 @@ const SignUp = () => {
                     name="password"
                     autoComplete="current-password"
                 />
-                <TextField
-                    sx = {{minWidth :'70%', margin: "15px"}}
-                    id="outlined"
-                    label="email"
-                    name="email"
-                />
-                <TextField
-                    sx = {{minWidth :'70%', margin: "15px"}}
-                    id="outlined"
-                    label="github"
-                    name="github"
-                />
-                <TextField
-                    sx = {{minWidth :'70%', margin: "15px"}}
-                    id="outlined"
-                    label="Portfolio website"
-                    name="portfolio website"
-                /> 
-                <Button variant="outlined" color="primary" type="submit">Submit</Button>
+                <Button variant="outlined" color="primary" type="submit">Log in!</Button>
             </form>
             </Box>
         </Modal>
@@ -58,4 +40,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+export default Login

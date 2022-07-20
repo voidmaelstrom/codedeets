@@ -5,8 +5,9 @@ import { Toolbar, Box, Button, IconButton, ThemeProvider, Modal } from '@mui/mat
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
+import SignUp from '../SignUp/SignUp';
 import { theme } from './theme'
+import Login from '../Login/Login';
 
 let pages = ['Getting Started', 'Resources', 'Form']
 let linksArray = ['/gettingstarted', '/resources', '/form']
@@ -88,21 +89,8 @@ const Navbar = () => {
                             </Box>
                             
                             <Box sx={{ display: 'flex' }}>
-                                    <Button
-                                        key={userButtons[0]}
-                                        onClick={handleOpen}
-                                        sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
-                                    >
-                                        {userButtons[0]}
-                                    </Button>
-                                <Modal
-                                        open = {open}
-                                        onClose = {handleClose}
-                                    >
-                                        <Typography>
-                                            Text in modal
-                                        </Typography>
-                                    </Modal>
+                                <SignUp/>
+                                <Login/>
                             </Box>
 
                         </Toolbar>
