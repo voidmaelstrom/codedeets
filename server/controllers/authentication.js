@@ -5,9 +5,9 @@ const jwt = require('json-web-token')
 
 auth.post('/', async (req, res) => {
     
-    const email = req.body.email;
-    let sql = "SELECT * FROM public.user WHERE email = $1";
-    let user = await client.query(sql, [email])
+    const name = req.body.name;
+    let sql = "SELECT * FROM public.user WHERE name = $1";
+    let user = await client.query(sql, [name])
 
     user = user.rows[0]
     //console.log(user.password)
