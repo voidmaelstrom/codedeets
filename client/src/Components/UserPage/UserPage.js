@@ -5,7 +5,7 @@ const UserPage = () => {
     
     return(
         <div className="userpage">
-            
+        
             <div className="username">
                 <Avatar
                     sx={{ width: 150, height: 150 }}

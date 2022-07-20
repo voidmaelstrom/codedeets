@@ -24,6 +24,7 @@
 .users {
     background-color: rgb(164, 245, 98);
     grid-area: users;
+    text-align: center;
 }
 
 .userpage {
@@ -39,7 +40,6 @@
 .userbio {
     background-color: aliceblue;
     grid-column: 1 / 4;
-
     text-align: center;
 }
 
@@ -48,7 +48,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .userlinked {
