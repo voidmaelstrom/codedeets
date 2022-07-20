@@ -1,32 +1,35 @@
 
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
-const UserList = (props) => {
+const UserList = () => {
 
     // useState variable for user data
-    let [user, setUser] = useState([])
+    let [users, setUsers] = useState([])
 
     // General set up for API call on users
     useEffect(() => {
         const fetchUser = async () => {
             const response = await fetch("http://localhost:5000/user")
-            const resUser = await response.json()
-            setUser(resUser)
-            console.log(resUser)
+            const resUsers = await response.json()
+            setUsers(resUsers)
+            //console.log(resUsers)
         }
         fetchUser()
     }, []) 
 
-    const display = user.map((data, i) => {
+    const displayUsers = users.map((user) => {
         return (
-            <li>{data.name} key={i}</li>
+            <li key={user.user_id}>
+                <Link to={`/user/${user.user_id}`}>{user.name}</Link>
+            </li>
         )
     })
 
     return (
         <div className='users'>
             <h1>Users List</h1>
-            {display}
+            {displayUsers}
         </div>
     )
 }
