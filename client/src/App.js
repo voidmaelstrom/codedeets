@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar'
-import PostContainer from './Components/PostContainer/PostContainer';
+import PostContainer from './Components/postContainer/PostContainer';
 import UserList from './Components/UserList/UserList';
 import GettingStarted from './Components/GettingStarted/GettingStarted';
 import Error404 from './Components/Error404/Error404';
