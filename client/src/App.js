@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './components/Navbar/Navbar'
-import PostContainer from './components/postContainer/PostContainer';
-import UserList from './components/UserList/UserList';
-import GettingStarted from './components/GettingStarted/GettingStarted';
-import Error404 from './components/Error404/Error404';
-import UserPage from './components/UserPage/UserPage';
+import Navbar from './Components/Navbar/Navbar'
+import PostContainer from './Components/postContainer/PostContainer';
+import UserList from './Components/UserList/UserList';
+import GettingStarted from './Components/GettingStarted/GettingStarted';
+import Error404 from './Components/Error404/Error404';
+import UserPage from './Components/UserPage/UserPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Form from './components/Form/Form';
-import Resources from './components/Resources/Resources';
+import Form from './Components/Form/Form';
+import Resources from './Components/Resources/Resources';
 //import MarkdownPostContainer from './components/MarkdownPostContainer/MarkdownPostContainer';
 
 

@@ -15,7 +15,7 @@ const SignUp = () => {
         >Signup</Button>
         <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
-            <form action={'http://localhost:5050/user'} method='POST'>
+            <form action={'http://localhost:5000/user'} method='POST'>
                 <TextField
                     sx = {{minWidth :'70%', margin: "15px"}}
                     required

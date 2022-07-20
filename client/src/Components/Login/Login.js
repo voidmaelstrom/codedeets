@@ -15,7 +15,7 @@ const Login = () => {
         >Login</Button>
         <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
-            <form action={'http://localhost:5050/auth'} method='POST'>
+            <form action={'http://localhost:5000/auth'} method='POST'>
                 <TextField
                     sx = {{minWidth :'70%', margin: "15px"}}
                     required
