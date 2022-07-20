@@ -15,7 +15,14 @@ let userButtons = ['Log in', 'Sign up']
 
 
 const Navbar = () => {
-
+    const [open, setOpen] = useState(false)
+    const handleOpen = () =>{
+        let button = 'Log in'
+        if(button === 'Log in'){
+        setOpen(true)
+        }
+    }
+    const handleClose = () => setOpen(false)
 
     return (
         <div className="navbar">
