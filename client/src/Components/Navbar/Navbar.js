@@ -1,9 +1,10 @@
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import { Toolbar, Box, Button, IconButton, ThemeProvider } from '@mui/material'
+import { Toolbar, Box, Button, IconButton, ThemeProvider, Modal } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import { theme } from './theme'
 
@@ -13,6 +14,15 @@ let userButtons = ['Log in', 'Sign up']
 
 
 const Navbar = () => {
+    const [open, setOpen] = useState(false)
+    const handleOpen = () =>{
+        let button = 'Log in'
+        if(button === 'Log in'){
+        setOpen(true)
+        }
+    }
+    const handleClose = () => setOpen(false)
+
     return (
         <div className="navbar">
             <ThemeProvider theme={theme}>
@@ -76,16 +86,23 @@ const Navbar = () => {
                                     <MenuIcon fontSize='large' />
                                 </IconButton>
                             </Box>
-
+                            
                             <Box sx={{ display: 'flex' }}>
-                                {userButtons.map((userButton) => (
                                     <Button
-                                        key={userButton}
+                                        key={userButtons[0]}
+                                        onClick={handleOpen}
                                         sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
                                     >
-                                        {userButton}
+                                        {userButtons[0]}
                                     </Button>
-                                ))}
+                                <Modal
+                                        open = {open}
+                                        onClose = {handleClose}
+                                    >
+                                        <Typography>
+                                            Text in modal
+                                        </Typography>
+                                    </Modal>
                             </Box>
 
                         </Toolbar>
