@@ -14,6 +14,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 app.use(defineCurrentUser)
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, 'public', 'build')));
+}
+
 // Setup base route for message return
 app.get('/', (req, res) => {
     res.status(200).json({
