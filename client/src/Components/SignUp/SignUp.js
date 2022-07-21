@@ -22,6 +22,7 @@ const SignUp = () => {
     const [err, setErrMessage] = useState(null)
     const { setCurrentUser } = useContext(CurrentUser)
 /*
+Not working with user state
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(user)
