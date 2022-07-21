@@ -17,7 +17,10 @@ const SignUp = () => {
         password: '',
         email: '',
         github: '',
-        website: ''
+        linkedin: '',
+        website: '',
+        bio: '',
+        admin: false
     })
     const [err, setErrMessage] = useState(null)
     const { setCurrentUser } = useContext(CurrentUser)
@@ -48,6 +51,7 @@ Not working with user state
             })
             .then(response => {
                 console.log('saved')
+                setCurrentUser(user)
                 history('/')
             })
         }catch(err){
@@ -90,6 +94,13 @@ Not working with user state
                     label="email"
                     name="email"
                 />
+                 <TextField
+                    sx = {{minWidth :'70%', margin: "15px"}}
+                    onChange={(e) => setUser({...user, linkedin: e.target.value})}
+                    id="outlined"
+                    label="linkedIn"
+                    name="linkedin"
+                />
                 <TextField
                     sx = {{minWidth :'70%', margin: "15px"}}
                     onChange={(e) => setUser({...user, github: e.target.value})}
@@ -103,7 +114,17 @@ Not working with user state
                     id="outlined"
                     label="Portfolio website"
                     name="website"
-                /> 
+                />
+                <TextField
+                    sx = {{minWidth :'70%',margin: "15px"}}
+                    onChange={(e) => setUser({...user, bio: e.target.value})}
+                    id="standard-multiline-flexible"
+                    multiline
+                    maxRows={6}
+                    label="Tell us about yourself!"
+                    name="bio"
+                />  
+
                 <Button variant="outlined" color="primary" type="submit">Submit</Button>
             </form>
             </Box>

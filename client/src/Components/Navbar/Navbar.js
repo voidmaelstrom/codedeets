@@ -31,7 +31,9 @@ const Navbar = () => {
     
     if (currentUser){
         loginActions = (
-            <Button href="/user">{currentUser.name}</Button>
+            <Button 
+            sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
+            href={`user/${currentUser.user_id}`}>{currentUser.name}</Button>
         )
     }
 

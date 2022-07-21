@@ -1,7 +1,9 @@
-import { Button, Modal, Box, Paper, TextField, Checkbox,  } from "@mui/material"
+import { Button, Modal, Box, TextField} from "@mui/material"
 import { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { CurrentUser } from "../../contexts/CurrentUser"
+
+import axios from "axios"
 import style from "./style"
 
 const Login = () => {
@@ -13,11 +15,13 @@ const Login = () => {
 
     const [ userAuth, setUserAuth ] = useState({
         name: '',
+        email: '',
         password: ''
     })
-    const [err, setErrMessage] = useState(null)
-    const { setCurrentUser } = useContext(CurrentUser)
 
+    const [err, setErrMessage] = useState(null)
+    const { setCurrentUser, currentUser } = useContext(CurrentUser)
+/* Not working with state
     const handleSubmit = async (e) => {
         e.preventDefault()
         const response = await fetch('http://localhost:5050/auth', {
@@ -30,13 +34,33 @@ const Login = () => {
         const data = await response.json()
 
         if(response.status === 200) {
-            setCurrentUser(data.name)
+            setCurrentUser(data.user)
             history.push('/')
         }else {
             setErrMessage(data.message)
             console.log(err)
         }
     } 
+*/
+
+const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try{
+        const response = await axios({
+            method: "post",
+            url: "http://localhost:5050/auth",
+            data: userAuth
+        })
+        .then(response => {
+            console.log(response)
+            setCurrentUser(response.data.user)
+            handleClose()
+        }).then(console.log(currentUser))
+    }catch(err){
+        console.log(err)
+    }
+}
 
 
     return(
@@ -45,6 +69,7 @@ const Login = () => {
             sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
             onClick={handleOpen}
         >Login</Button>
+        
         <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
             <form  onSubmit={handleSubmit}>
