@@ -10,7 +10,7 @@ module.exports = {
       },
       file: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING.BINARY
       },
       tag: {
         type: Sequelize.STRING
