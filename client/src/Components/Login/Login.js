@@ -34,6 +34,7 @@ const Login = () => {
                 />
                 <Button variant="outlined" color="primary" type="submit">Log in!</Button>
             </form>
+    
             </Box>
         </Modal>
     </div>
