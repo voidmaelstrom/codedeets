@@ -52,7 +52,8 @@ Not working with user state
             .then(response => {
                 console.log('saved')
                 setCurrentUser(user)
-                history('/')
+                localStorage.setItem('token', response.data.token)
+                handleClose()
             })
         }catch(err){
             console.log(err)

@@ -55,6 +55,7 @@ const handleSubmit = async (e) => {
         .then(response => {
             console.log(response)
             setCurrentUser(response.data.user)
+            localStorage.setItem('token', response.data.token)
             handleClose()
         }).then(console.log(currentUser))
     }catch(err){
