@@ -66,7 +66,6 @@ posts.put('/:id/uploadFile', upload.any(), (req, res, next) => {
 
 // create a post
 posts.post('/', upload.any(), async (req, res, next) => {
-
     let currentUser;
     try {
         const [method, token] = req.headers.authorization.split(' ')
@@ -74,42 +73,37 @@ posts.post('/', upload.any(), async (req, res, next) => {
             const result = await jwt.decode(process.env.JWT_SECRET, token)
             const { id } = result.value
             let sql = "SELECT * FROM public.user WHERE user_id = $1";
-            currentUser = await client.query(sql, [id], (err, result) => {
-                if (err) {
-                    return console.error(err.message);
-                } else {
-                    res.status(200).json(result.rows)
+            client.query(sql, [id])
+            .then(result => {
+                currentUser = result.rows[0]
+
+                if (!currentUser) {
+                    return res.status(404).json({
+                        message: 'You must be logged in to write a blog.'
+                    })
                 }
+            
+                console.log('Multer output', req.files)
+            
+                const file = Uint8Array.from(req.files[0].buffer)
+                const tag = req.body.tag
+                const userId = currentUser.user_id
+                let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
+                client.query(sql, [file, tag, userId], (err, result) => {
+                    if (err) {
+                        return console.error(err.message);
+                    } else {
+                        res.status(200).json({
+                            message: 'Successfully created post'
+                        })
+                    }
+                })
+                client.end;
             })
-            client.end;
         }
     } catch {
         currentUser = null
     }
-
-    if (!currentUser) {
-        return res.status(404).json({
-            message: 'You must be logged in to write a blog.'
-        })
-    }
-
-    console.log('Multer output', req.files)
-
-    const file = Uint8Array.from(req.files[0].buffer)
-    const tag = req.body.tag
-    // const userId = req.body.user_id
-    const userId = currentUser.user_id
-    let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
-    client.query(sql, [file, tag, userId], (err, result) => {
-        if (err) {
-            return console.error(err.message);
-        } else {
-            res.status(200).json({
-                message: 'Successfully created post'
-            })
-        }
-    })
-    client.end;
 })
 
 // update a post
