@@ -74,7 +74,7 @@ posts.post('/', upload.any(), async (req, res, next) => {
             const result = await jwt.decode(process.env.JWT_SECRET, token)
             const { id } = result.value
             let sql = "SELECT * FROM public.user WHERE user_id = $1";
-            currentUser = await client.query(sql, [id], (err, result) => {
+            currentUser = client.query(sql, [id], (err, result) => {
                 if (err) {
                     return console.error(err.message);
                 } else {

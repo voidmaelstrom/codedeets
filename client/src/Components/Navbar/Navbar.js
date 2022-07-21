@@ -4,25 +4,36 @@ import Typography from '@mui/material/Typography'
 import { Toolbar, Box, Button, IconButton, ThemeProvider, Modal } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import SignUp from '../SignUp/SignUp';
 import { theme } from './theme'
 import Login from '../Login/Login';
+import {CurrentUser} from '../../contexts/CurrentUser'
+
 
 let pages = ['Getting Started', 'Resources', 'Form']
 let linksArray = ['/gettingstarted', '/resources', '/form']
-let userButtons = ['Log in', 'Sign up']
+
 
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false)
-    const handleOpen = () =>{
-        let button = 'Log in'
-        if(button === 'Log in'){
-        setOpen(true)
-        }
+
+
+
+    const { currentUser } = useContext(CurrentUser)
+
+    let loginActions = (
+       <>
+        <Login/>
+        <SignUp/>
+       </>
+    )
+    
+    if (currentUser){
+        loginActions = (
+            <Button href="/user">{currentUser.name}</Button>
+        )
     }
-    const handleClose = () => setOpen(false)
 
     return (
         <div className="navbar">
@@ -88,10 +99,7 @@ const Navbar = () => {
                                 </IconButton>
                             </Box>
                             
-                            <Box sx={{ display: 'flex' }}>
-                                <SignUp/>
-                                <Login/>
-                            </Box>
+                            {loginActions}
 
                         </Toolbar>
 
