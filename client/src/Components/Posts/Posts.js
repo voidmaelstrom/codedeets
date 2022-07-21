@@ -39,10 +39,12 @@ const card = (
   </React.Fragment>
 );
 
-export default function OutlinedCard() {
+const Posts = () => {
   return (
     <Box sx={{ minWidth: 200 }}>
       <Card variant="outlined">{card}</Card>
     </Box>
   );
 }
+
+export default Posts
