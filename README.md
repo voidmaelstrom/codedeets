@@ -52,9 +52,18 @@ CONFIG="postgres://username:password@127.0.0.1:5432/database_name"
 JWT_SECRET="any_string_you_choose_here"
 ```
 
-2.) Make sure postgres is setup and available on your machine (using a tool like pgAdmin or similar).
+If you already have a remote hosted SQL instance setup, just adjust the connection string for the `CONFIG`
+param as needed and refer to their documentation (ElephantSQL, AWS, etc.)
 
-3.) Run the following commands using `sequelize` to setup the database and needed tables for `posts` and `user`:
+2.) Run this command to install all the dependencies:
+
+```
+npm i
+```
+
+3.) Make sure postgres is setup and available on your machine (using a tool like pgAdmin or similar).
+
+4.) Run the following commands using `sequelize` to setup the database and needed tables for `posts` and `user`:
 
 ```
 npx sequelize-cli db:create
@@ -67,16 +76,15 @@ If you need to drop all the tables and start from scratch prior, run this comman
 npx sequelize-cli db:drop
 ```
 
-4.) Run the following commands to start the server:
+5.) Run the following commands to start the server:
 
 ```
-npm i
 npm start
 ```
 
 You should see a `Server running... on port port_number_you_specified_in_env` message if all is successful.
 
-5.) cd into the `client` directory and run the following commands to start the frontend:
+6.) cd into the `client` directory and run the following commands to start the frontend:
 
 ```
 npm i --legacy-peer-deps
