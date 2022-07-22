@@ -47,17 +47,16 @@ const handleSubmit = async (e) => {
     e.preventDefault()
 
     try{
-        const response = await axios({
+        await axios({
             method: "post",
             url: "http://localhost:5050/auth",
             data: userAuth
         })
         .then(response => {
-            console.log(response)
             setCurrentUser(response.data.user)
             localStorage.setItem('token', response.data.token)
             handleClose()
-        }).then(console.log(currentUser))
+        })
     }catch(err){
         console.log(err)
     }
