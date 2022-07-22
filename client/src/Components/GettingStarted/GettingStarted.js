@@ -12,7 +12,7 @@ const GettingStarted = (props) => {
     return (
         <div className="gettingStarted">
             <MDEditor
-                value={renderData(props, 2)}
+                value={renderData(props, 6)}
                 onChange={setValue}
             />
             <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />

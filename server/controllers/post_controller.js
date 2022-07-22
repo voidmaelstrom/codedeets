@@ -7,7 +7,15 @@ const jwt = require('json-web-token')
 const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({
-    storage: storage
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "text/markdown") {
+          cb(null, true);
+        } else {
+          cb(null, false);
+          return cb(new Error('Only .md (markdown) format for file is allowed!'));
+        }
+      }
 });
 
 const bodyParser = require('body-parser')
@@ -66,85 +74,187 @@ posts.put('/:id/uploadFile', upload.any(), (req, res, next) => {
 
 // create a post
 posts.post('/', upload.any(), async (req, res, next) => {
-
     let currentUser;
+
     try {
+
+        if (!req.headers.authorization) {
+            return res.status(404).json({
+                message: 'Authorization token not present in header.'
+            })
+        }
+
         const [method, token] = req.headers.authorization.split(' ')
+
         if (method == 'Bearer') {
             const result = await jwt.decode(process.env.JWT_SECRET, token)
             const { id } = result.value
             let sql = "SELECT * FROM public.user WHERE user_id = $1";
-            currentUser = await client.query(sql, [id], (err, result) => {
-                if (err) {
-                    return console.error(err.message);
-                } else {
-                    res.status(200).json(result.rows)
+
+            client.query(sql, [id])
+            .then(result => {
+                currentUser = result.rows[0]
+
+                if (!currentUser) {
+                    return res.status(404).json({
+                        message: 'You must be logged in to write a blog.'
+                    })
                 }
+            
+                console.log('Multer output', req.files)
+
+                let file
+
+                if (req.files.length === 0) {
+                    file = []
+                } else {
+                    file = Uint8Array.from(req.files[0].buffer)
+                }
+
+                const tag = req.body.tag
+                const userId = currentUser.user_id
+                let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
+                client.query(sql, [file, tag, userId], (err, result) => {
+                    if (err) {
+                        return console.error(err.message);
+                    } else {
+                        res.status(200).json({
+                            message: 'Successfully created post'
+                        })
+                    }
+                })
+                client.end;
             })
-            client.end;
+
+        } else {
+            return res.status(404).json({
+                message: 'Authorization method not set as expected.'
+            })
         }
+
     } catch {
         currentUser = null
     }
-
-    if (!currentUser) {
-        return res.status(404).json({
-            message: 'You must be logged in to write a blog.'
-        })
-    }
-
-    console.log('Multer output', req.files)
-
-    const file = Uint8Array.from(req.files[0].buffer)
-    const tag = req.body.tag
-    // const userId = req.body.user_id
-    const userId = currentUser.user_id
-    let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
-    client.query(sql, [file, tag, userId], (err, result) => {
-        if (err) {
-            return console.error(err.message);
-        } else {
-            res.status(200).json({
-                message: 'Successfully created post'
-            })
-        }
-    })
-    client.end;
 })
 
 // update a post
-posts.put('/:id', async (req, res) => {
-  const post_id = req.params.id
-  const file = req.body.file
-  const tag = req.body.tag
-  const user_id = req.body.user_id
-  let sql = "UPDATE posts SET file = $1, tag = $2, user_id = $3 WHERE post_id = $4"
-  client.query(sql, [file, tag, user_id, post_id], (err, result) => {
-      if (err) {
-          return console.error(err.message);
-      } else {
-        res.status(202).json({
-            message: 'Post successfully updated'
-          })
-      }
-  })
-  client.end;
+posts.put('/:id',upload.any(), async (req, res) => {
+  let currentUser;
+
+  try {
+
+        if (!req.headers.authorization) {
+            return res.status(404).json({
+                message: 'Authorization token not present in header.'
+            })
+        }
+
+        const [method, token] = req.headers.authorization.split(' ')
+
+        if (method == 'Bearer') {
+            const result = await jwt.decode(process.env.JWT_SECRET, token)
+            const { id } = result.value
+            let sql = "SELECT * FROM public.user WHERE user_id = $1";
+            client.query(sql, [id])
+            .then(result => {
+                currentUser = result.rows[0]
+
+                if (!currentUser) {
+                    return res.status(404).json({
+                        message: 'You must be logged in to write a blog.'
+                    })
+                }
+
+                console.log('Multer output', req.files)
+
+                const post_id = req.params.id
+                let file
+
+                if (req.files.length === 0) {
+                    file = []
+                } else {
+                    file = Uint8Array.from(req.files[0].buffer)
+                }
+
+                const tag = req.body.tag
+                const user_id = req.body.user_id
+                let sql = "UPDATE posts SET file = $1, tag = $2, user_id = $3 WHERE post_id = $4"
+
+                client.query(sql, [file, tag, user_id, post_id], (err, result) => {
+                    if (err) {
+                        return console.error(err.message);
+                    } else {
+                        res.status(202).json({
+                            message: 'Post successfully updated'
+                        })
+                    }
+                })
+                client.end;
+            })
+
+        } else {
+            return res.status(404).json({
+                message: 'Authorization method not set as expected.'
+            })
+        }
+
+    } catch {
+        currentUser = null
+    }
 })
 
 // delete a post
 posts.delete('/:id', async (req, res) => {
-  id = req.params.id
-  let sql = "DELETE FROM posts WHERE post_id = $1"
-  client.query(sql, [id], (err, result) => {
-      if (err) {
-          return console.error(err.message);
-      } else {
-        res.status(200).json({
-            message: 'Post successfully deleted'
-          })
-      }
-  })
-  client.end;
+    let currentUser;
+
+    try {
+
+        if (!req.headers.authorization) {
+            return res.status(404).json({
+                message: 'Authorization token not present in header.'
+            })
+        }
+
+        const [method, token] = req.headers.authorization.split(' ')
+
+        if (method == 'Bearer') {
+            const result = await jwt.decode(process.env.JWT_SECRET, token)
+            const { id } = result.value
+            let sql = "SELECT * FROM public.user WHERE user_id = $1";
+            client.query(sql, [id])
+            .then(result => {
+                currentUser = result.rows[0]
+
+                if (!currentUser) {
+                    return res.status(404).json({
+                        message: 'You must be logged in to write a blog.'
+                    })
+                }
+
+                const id = req.params.id
+                let sql = "DELETE FROM posts WHERE post_id = $1"
+
+                client.query(sql, [id], (err, result) => {
+                    if (err) {
+                        return console.error(err.message);
+                    } else {
+                        res.status(200).json({
+                            message: 'Post successfully deleted'
+                        })
+                    }
+                })
+                client.end;
+            })
+
+        } else {
+            return res.status(404).json({
+                message: 'Authorization method not set as expected.'
+            })
+        }
+
+    } catch {
+        currentUser = null
+    }
 })
 
 module.exports = posts
