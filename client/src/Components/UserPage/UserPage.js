@@ -14,7 +14,6 @@ const UserPage = () => {
         const fetchUser = async () => {
             const response = await fetch(API_URL + `${id}`)
             const resUsers = await response.json()
-            console.log(resUsers)
             setUserPage(...resUsers)
         }
         fetchUser()
