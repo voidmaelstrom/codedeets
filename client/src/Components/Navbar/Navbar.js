@@ -1,10 +1,10 @@
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import { Toolbar, Box, Button, IconButton, ThemeProvider, Modal } from '@mui/material'
+import { Toolbar, Box, Button, IconButton, ThemeProvider} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import SignUp from '../SignUp/SignUp';
 import { theme } from './theme'
 import Login from '../Login/Login';

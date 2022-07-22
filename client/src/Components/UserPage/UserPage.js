@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
 

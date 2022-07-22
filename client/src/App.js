@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Navbar from './Components/Navbar/Navbar'
 import PostContainer from './Components/PostContainer/PostContainer';

@@ -1,6 +1,5 @@
 import { Button, Modal, Box, TextField} from "@mui/material"
 import { useState, useContext } from "react"
-import { useNavigate, Link } from "react-router-dom"
 import { CurrentUser } from "../../contexts/CurrentUser"
 
 import axios from "axios"
@@ -11,16 +10,15 @@ const Login = () => {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    const history = useNavigate()
 
     const [ userAuth, setUserAuth ] = useState({
         name: '',
         email: '',
         password: ''
     })
-
-    const [err, setErrMessage] = useState(null)
-    const { setCurrentUser, currentUser } = useContext(CurrentUser)
+    //Keeping err state here for later use
+    //const [err, setErrMessage] = useState(null)
+    const { setCurrentUser } = useContext(CurrentUser)
 /* Not working with state
     const handleSubmit = async (e) => {
         e.preventDefault()

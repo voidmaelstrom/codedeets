@@ -1,6 +1,5 @@
 import { Button, Modal, Box,TextField } from "@mui/material"
 import { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
 import { CurrentUser } from "../../contexts/CurrentUser"
 import axios from 'axios'
 import style from "./style"
@@ -10,7 +9,6 @@ const SignUp = () => {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    const history = useNavigate()
 
     const [ user, setUser ] = useState({
         name: '',
@@ -22,7 +20,8 @@ const SignUp = () => {
         bio: '',
         admin: false
     })
-    const [err, setErrMessage] = useState(null)
+    // Keeping here for later use
+    //const [err, setErrMessage] = useState(null)
     const { setCurrentUser } = useContext(CurrentUser)
 /*
 Not working with user state
