@@ -7,7 +7,7 @@ const PostContainer = (props) => {
 
         return (
                 <Grid key={i} item xs={12} sm={6} md={4}>
-                    <Post data={data} key={i} />
+                    <Post data={data} key={i} value={i} />
                 </Grid>
         )
     })

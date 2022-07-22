@@ -4,11 +4,12 @@ let decoder = new TextDecoder("utf-8")
 
 
 // Pass in props(fetch data) + the index (i) to pass through array and grab data as needed!
-function renderData(props, i){  
+function renderData(props){  
+
     if(props.data != null){
       try{
-        console.log(props.data[i])
-      let arrayBuffer = new Uint8Array(props.data[i].file.data)
+
+      let arrayBuffer = new Uint8Array(props.data.file.data)
       let decodedArray = decoder.decode(arrayBuffer)
       return(
         decodedArray
