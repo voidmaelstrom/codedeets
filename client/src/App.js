@@ -11,6 +11,7 @@ import Form from './Components/Form/Form';
 import Resources from './Components/Resources/Resources';
 import SignUp from './Components/SignUp/SignUp';
 import Login from './Components/Login/Login';
+import { useState, useEffect } from 'react';
 
 import './App.css';
 import CurrentUserProvider from './contexts/CurrentUser';

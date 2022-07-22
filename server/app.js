@@ -4,6 +4,7 @@ const cors = require('cors')
 const app = express()
 const {client} = require('./models/middleware')
 const defineCurrentUser = require('./middleware/defineCurrentUser')
+const path = require('path')
 
 client.connect();
 
