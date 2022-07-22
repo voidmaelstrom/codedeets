@@ -1,10 +1,28 @@
 import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 export const CurrentUser = createContext()
 
 function CurrentUserProvider({ children }) {
     const [currentUser, setCurrentUser ] = useState(null)
 
     useEffect(() => {
+
+        const getNewUser = async () => {
+            try{
+                await axios({
+                    method: "post",
+                    url: "http://localhost:5050/auth",
+                    data: currentUser
+                })
+                .then(response => {
+                    setCurrentUser(response.data.user)
+                    localStorage.setItem('token', response.data.token)
+                })
+            }catch(err){
+                console.log(err)
+            }
+        }
+
         const getLoggedInUser = async () => {
             let response = await fetch('http://localhost:5050/auth/profile', {
                 headers: {
@@ -14,7 +32,12 @@ function CurrentUserProvider({ children }) {
             let user = await response.json()
             setCurrentUser(user)
         }
-        getLoggedInUser()
+        if(localStorage.getItem('token')){
+            getLoggedInUser()
+        }else{
+            getNewUser()
+        }
+
     }, [currentUser])
 
 

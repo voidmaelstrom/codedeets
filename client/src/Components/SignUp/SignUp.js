@@ -39,6 +39,27 @@ Not working with user state
         history.push('/')
     } 
 */
+
+/* Testing this function
+const handleLogin = async (newUser) => {
+    try{
+        await axios({
+            method: "post",
+            url: "http://localhost:5050/auth",
+            data: newUser
+        })
+        .then(response => {
+            setCurrentUser(response.data.user)
+            localStorage.setItem('token', response.data.token)
+            handleClose()
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+*/
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -48,12 +69,12 @@ Not working with user state
                 url: "http://localhost:5050/user",
                 data: user
             })
-            .then(response => {
-                console.log(response.data.user)
-                setCurrentUser(response.data.user)
-                localStorage.setItem('token', response.data.token)
+            .then(response => {               
+                console.log(response)
+                setCurrentUser(response.data[0])
                 handleClose()
-            })
+            }
+        )
         }catch(err){
             console.log(err)
         }

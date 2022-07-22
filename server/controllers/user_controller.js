@@ -44,8 +44,13 @@ user.post('/', async (req, res) => {
       if (err) {
           return console.error(err.message);
       } else {
-        res.status(200).json({
-          message: 'Successfully created user'
+        let resSql = 'SELECT * FROM public.user WHERE user_id=(SELECT max(user_id) FROM public.user)'
+        client.query(resSql, (err, result) => {
+          if(err){
+            return console.log(err)
+          }else{
+             res.json(result.rows)
+          }
         })
       }
   })
