@@ -7,24 +7,26 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import ReactMarkdown from 'https://esm.sh/react-markdown@7'
+
 const Post = (props) => {
 
-  const card = ( 
+  const card = (
     <React.Fragment>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Post Number <br/>
+          Post Number <br />
           {props.data.post_id}
         </Typography>
-        {/* <Typography variant="h5" component="div">
-          
-        </Typography> */}
+        <Typography variant="h5" component="div">
+        <ReactMarkdown>{props.data.file}</ReactMarkdown>
+        </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Tag <br/>
+          Tag <br />
           {props.data.tag}
         </Typography>
         <Typography variant="body2">
-          Body
+          
         </Typography>
       </CardContent>
       <CardActions>
