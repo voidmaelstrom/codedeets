@@ -25,7 +25,31 @@ auth.post('/', async (req, res) => {
 })
 
 auth.get('/profile', async (req,res) => {
-    res.json(req.currentUser)
+    try{
+        // Splitting auth header
+        const [authMethod, token] = req.headers.authorization.split(' ')
+
+        // Bearer auth
+        if (authMethod == 'Bearer'){
+            //Decoding JWT
+            const result = await jwt.decode(process.env.JWT_SECRET, token)
+            const {id}  = result.value
+            //Querying DB for user
+            let sql = "SELECT * FROM public.user WHERE user_id = $1";
+            client.query(sql, [id], (err, result) => {
+                if(err){
+                    return console.log(err.message)
+                }else{
+                    res.status(200).json(result.rows)
+                }
+            })
+        }
+    }catch {
+        res.json(null)
+    }
 })
 client.end;
 module.exports = auth
+
+
+

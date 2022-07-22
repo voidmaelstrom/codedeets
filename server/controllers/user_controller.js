@@ -46,7 +46,7 @@ user.post('/', async (req, res) => {
       if (err) {
         return console.error(err.message);
       } else {
-        res.json(result)
+        res.json(result.rows)
       }
     })
   })
