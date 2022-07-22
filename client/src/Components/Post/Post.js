@@ -6,10 +6,12 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { renderData } from '../../helper';
 
 import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 
 const Post = (props) => {
+
 
   const card = (
     <React.Fragment>
@@ -19,7 +21,7 @@ const Post = (props) => {
           {props.data.post_id}
         </Typography>
         <Typography variant="h5" component="div">
-        <ReactMarkdown>{props.data.file}</ReactMarkdown>
+        <ReactMarkdown children={renderData(props)} />
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Tag <br />
@@ -36,7 +38,6 @@ const Post = (props) => {
   );
 
   return (
-
     <Box sx={{ minWidth: 200 }}>
       <Card variant="outlined">{card}</Card>
     </Box>
