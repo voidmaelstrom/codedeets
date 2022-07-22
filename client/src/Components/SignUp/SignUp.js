@@ -45,7 +45,7 @@ Not working with user state
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5050/user",
+                url: "http://localhost:5000/user",
                 data: user
             })
             .then(response => {
