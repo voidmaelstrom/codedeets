@@ -11,7 +11,7 @@ function CurrentUserProvider({ children }) {
             try{
                 await axios({
                     method: "post",
-                    url: "http://localhost:5050/auth",
+                    url: "http://localhost:5000/auth",
                     data: currentUser
                 })
                 .then(response => {
@@ -24,7 +24,7 @@ function CurrentUserProvider({ children }) {
         }
 
         const getLoggedInUser = async () => {
-            let response = await fetch('http://localhost:5050/auth/profile', {
+            let response = await fetch('http://localhost:5000/auth/profile', {
                 headers: {
                     'Authorization' : `Bearer ${localStorage.getItem('token')}`
                 }
