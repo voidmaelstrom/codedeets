@@ -38,7 +38,7 @@ user.post('/', async (req, res) => {
   const linkedin = req.body.linkedin
   const password = await bcrypt.hash(req.body.password, 10)
   const website = req.body.website
-  const admin = req.body.admin
+  const admin = false
   let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, admin) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'
   client.query(sql, [name, bio, email, github, linkedin, password, website, admin], (err, result) => {
       if (err) {

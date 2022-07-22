@@ -33,6 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       admin: {
+        defaultValue: false,
         allowNull: false,
         type: Sequelize.BOOLEAN
       }
