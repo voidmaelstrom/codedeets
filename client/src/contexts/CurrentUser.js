@@ -6,17 +6,16 @@ function CurrentUserProvider({ children }) {
 
     useEffect(() => {
         const getLoggedInUser = async () => {
-            let response = await fetch('http://localhost:5000/auth/profile', {
+            let response = await fetch('http://localhost:5050/auth/profile', {
                 headers: {
                     'Authorization' : `Bearer ${localStorage.getItem('token')}`
                 }
             })
             let user = await response.json()
-            console.log(user)
             setCurrentUser(user)
         }
         getLoggedInUser()
-    }, [])
+    }, [currentUser])
 
 
     return (

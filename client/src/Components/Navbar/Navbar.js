@@ -22,6 +22,9 @@ const Navbar = () => {
 
     const { currentUser } = useContext(CurrentUser)
 
+    const handleLogout = (e) => {
+        localStorage.removeItem('token')
+    }
     let loginActions = (
        <>
         <Login/>
@@ -30,11 +33,23 @@ const Navbar = () => {
     )
     
     if (currentUser){
-        loginActions = (
+        try{
+        loginActions = (   
+            <>
             <Button 
             sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
-            href={`user/${currentUser[0].user_id}`}>{currentUser[0].name}</Button>
+            href={`http://localhost:3000/user/${currentUser[0].user_id}`}>{currentUser[0].name}</Button>
+            <Button 
+            sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
+            onClick={handleLogout}>
+                Logout
+            </Button>
+            </>
+         
         )
+        }catch{
+            <Button>Loading</Button>
+        }
     }
 
     return (

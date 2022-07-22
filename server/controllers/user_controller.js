@@ -45,7 +45,7 @@ user.post('/', async (req, res) => {
           return console.error(err.message);
       } else {
         res.status(200).json({
-            message: 'Successfully created user'
+          message: 'Successfully created user'
         })
       }
   })

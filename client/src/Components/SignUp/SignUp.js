@@ -45,12 +45,12 @@ Not working with user state
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5000/user",
+                url: "http://localhost:5050/user",
                 data: user
             })
             .then(response => {
-                console.log('saved')
-                setCurrentUser(user)
+                console.log(response.data.user)
+                setCurrentUser(response.data.user)
                 localStorage.setItem('token', response.data.token)
                 handleClose()
             })
