@@ -70,7 +70,7 @@ user.put('/:id', async (req, res) => {
             return console.error(err.message);
         } else {
           res.status(200).json({
-              message: `Successfully updated user: ${req.body}`
+              message: 'Successfully updated user'
           })
         }
     })
