@@ -18,6 +18,20 @@ import CurrentUserProvider from './contexts/CurrentUser';
 
 
 const App = () => {
+  
+  // useState variable for posts data
+  let [data, setData] = useState([])
+
+  // General set up for API call on posts
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:5000/posts')
+      const resData = await response.json()
+      setData(resData)
+    }
+    fetchData()
+    
+  }, [])
 
 
  
@@ -30,8 +44,8 @@ const App = () => {
         {/* Div container where all routed components will render */}
         <div className="display">
           <Routes>    
-            <Route path="/" element={<PostContainer  />} />
-            <Route path="/gettingstarted" element={<GettingStarted />} />
+            <Route path="/" element={<PostContainer  data={data} />} />
+            <Route path="/gettingstarted" element={<GettingStarted data={data} />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
             {/* Route to UserPage */}

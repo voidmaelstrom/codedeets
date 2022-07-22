@@ -48,8 +48,6 @@ const UserPage = () => {
                 </Button>
             </div>
         </div>
-
-
     )
 }
 
