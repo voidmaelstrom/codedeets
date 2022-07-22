@@ -7,7 +7,15 @@ const jwt = require('json-web-token')
 const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({
-    storage: storage
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "text/markdown") {
+          cb(null, true);
+        } else {
+          cb(null, false);
+          return cb(new Error('Only .md (markdown) format for file is allowed!'));
+        }
+      }
 });
 
 const bodyParser = require('body-parser')
@@ -82,6 +90,7 @@ posts.post('/', upload.any(), async (req, res, next) => {
             const result = await jwt.decode(process.env.JWT_SECRET, token)
             const { id } = result.value
             let sql = "SELECT * FROM public.user WHERE user_id = $1";
+
             client.query(sql, [id])
             .then(result => {
                 currentUser = result.rows[0]
@@ -93,8 +102,15 @@ posts.post('/', upload.any(), async (req, res, next) => {
                 }
             
                 console.log('Multer output', req.files)
-            
-                const file = Uint8Array.from(req.files[0].buffer)
+
+                let file
+
+                if (req.files.length === 0) {
+                    file = []
+                } else {
+                    file = Uint8Array.from(req.files[0].buffer)
+                }
+
                 const tag = req.body.tag
                 const userId = currentUser.user_id
                 let sql = 'INSERT INTO posts(post_id, file, tag, user_id) VALUES(DEFAULT, $1, $2, $3)'
@@ -152,7 +168,14 @@ posts.put('/:id',upload.any(), async (req, res) => {
                 console.log('Multer output', req.files)
 
                 const post_id = req.params.id
-                const file = Uint8Array.from(req.files[0].buffer)
+                let file
+
+                if (req.files.length === 0) {
+                    file = []
+                } else {
+                    file = Uint8Array.from(req.files[0].buffer)
+                }
+
                 const tag = req.body.tag
                 const user_id = req.body.user_id
                 let sql = "UPDATE posts SET file = $1, tag = $2, user_id = $3 WHERE post_id = $4"
