@@ -14,9 +14,9 @@ import Resources from './Components/Resources/Resources';
 
 
 const App = () => {
-
+  
   // useState variable for posts data
-  let [data, setData] = useState([{}])
+  let [data, setData] = useState([])
 
   // General set up for API call on posts
   useEffect(() => {
@@ -26,6 +26,7 @@ const App = () => {
       setData(resData)
     }
     fetchData()
+    
   }, [])
  
   return (
@@ -37,7 +38,7 @@ const App = () => {
         {/* Div container where all routed components will render */}
         <div className="display">
           <Routes>    
-            <Route path="/" element={<PostContainer  />} />
+            <Route path="/" element={<PostContainer  data={data} />} />
             <Route path="/gettingstarted" element={<GettingStarted data={data} />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/form" element={<Form />} />
