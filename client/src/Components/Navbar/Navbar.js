@@ -1,28 +1,56 @@
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import { Toolbar, Box, Button, IconButton, ThemeProvider, Modal } from '@mui/material'
+import { Toolbar, Box, Button, IconButton, ThemeProvider} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext } from 'react';
 import SignUp from '../SignUp/SignUp';
 import { theme } from './theme'
 import Login from '../Login/Login';
+import {CurrentUser} from '../../contexts/CurrentUser'
+
 
 let pages = ['Getting Started', 'Resources', 'Form']
 let linksArray = ['/gettingstarted', '/resources', '/form']
-let userButtons = ['Log in', 'Sign up']
+
 
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false)
-    const handleOpen = () =>{
-        let button = 'Log in'
-        if(button === 'Log in'){
-        setOpen(true)
+
+
+
+    const { currentUser } = useContext(CurrentUser)
+
+    const handleLogout = (e) => {
+        localStorage.removeItem('token')
+    }
+    let loginActions = (
+       <>
+        <Login/>
+        <SignUp/>
+       </>
+    )
+    
+    if (currentUser){
+        try{
+        loginActions = (   
+            <>
+            <Button 
+            sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
+            href={`http://localhost:3000/user/${currentUser[0].user_id}`}>{currentUser[0].name}</Button>
+            <Button 
+            sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
+            onClick={handleLogout}>
+                Logout
+            </Button>
+            </>
+         
+        )
+        }catch{
+            <Button>Loading</Button>
         }
     }
-    const handleClose = () => setOpen(false)
 
     return (
         <div className="navbar">
@@ -88,10 +116,7 @@ const Navbar = () => {
                                 </IconButton>
                             </Box>
                             
-                            <Box sx={{ display: 'flex' }}>
-                                <SignUp/>
-                                <Login/>
-                            </Box>
+                            {loginActions}
 
                         </Toolbar>
 

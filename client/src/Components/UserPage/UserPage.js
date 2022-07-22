@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
 
@@ -15,7 +14,6 @@ const UserPage = () => {
         const fetchUser = async () => {
             const response = await fetch(API_URL + `${id}`)
             const resUsers = await response.json()
-            console.log(resUsers)
             setUserPage(...resUsers)
         }
         fetchUser()
@@ -50,8 +48,6 @@ const UserPage = () => {
                 </Button>
             </div>
         </div>
-
-
     )
 }
 
