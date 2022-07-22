@@ -7,20 +7,21 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const Posts = (props) => {
+const Post = (props) => {
 
   const card = ( 
     <React.Fragment>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Post Number
-          {/* {props.data.post_id} */}
+          Post Number <br/>
+          {props.data.post_id}
         </Typography>
-        <Typography variant="h5" component="div">
-
-        </Typography>
+        {/* <Typography variant="h5" component="div">
+          
+        </Typography> */}
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Tag
+          Tag <br/>
+          {props.data.tag}
         </Typography>
         <Typography variant="body2">
           Body
@@ -40,5 +41,5 @@ const Posts = (props) => {
   );
 }
 
-export default Posts
+export default Post
 
