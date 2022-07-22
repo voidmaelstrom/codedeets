@@ -41,18 +41,14 @@ user.post('/', async (req, res) => {
   const admin = false
   let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, admin) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'
   client.query(sql, [name, bio, email, github, linkedin, password, website, admin], (err, result) => {
+    let resSql = 'SELECT * FROM public.user WHERE user_id=(SELECT max(user_id) FROM public.user)'
+    client.query(resSql, (err, result) => {
       if (err) {
-          return console.error(err.message);
+        return console.error(err.message);
       } else {
-        let resSql = 'SELECT * FROM public.user WHERE user_id=(SELECT max(user_id) FROM public.user)'
-        client.query(resSql, (err, result) => {
-          if(err){
-            return console.log(err)
-          }else{
-             res.json(result.rows)
-          }
-        })
+        res.json(result.rows)
       }
+    })
   })
   client.end;
 })
