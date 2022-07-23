@@ -23,7 +23,7 @@ const App = () => {
   // General set up for API call on posts
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/posts')
+      const response = await fetch('http://localhost:5050/posts')
       const resData = await response.json()
       setData(resData)
     }

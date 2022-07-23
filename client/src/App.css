@@ -41,43 +41,45 @@
 }
 
 .userpage {
-    background-color: antiquewhite;
-    height: 50vh;
+    background-color: #D3D3D3;
+    height: 50%;
     width: 79vw;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
+    align-content: center;
 }
 
 .userbio {
     background-color: aliceblue;
-    grid-column: 1 / 4;
+    grid-column: 1 / 2;
     text-align: center;
+    align-content: center;
 }
 
 .username {
-    background-color: rgb(250, 150, 150);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
 .userlinked {
     background-color: rgb(187, 204, 248);
-    grid-column: 1 / 4;
+    grid-column: 1 / 2;
     text-align: center;
 }
 
 .usergithub {
     background-color: aqua;
-    grid-column: 1 / 4;
+    grid-column: 1 / 2;
     text-align: center;
 }
 
 .userportfolio {
-    background-color: rgb(201, 157, 243);
-    grid-column: 1 / 4;
+    background-color: #536B70;
+    grid-column: 1 / 2;
     text-align: center;
 }
 
@@ -99,4 +101,7 @@
 
 a {
     text-decoration: none;
+    color: inherit;
+    font-weight: 700;
+    text-align: center;
 }
