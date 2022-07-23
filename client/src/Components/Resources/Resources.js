@@ -1,5 +1,7 @@
 import '../../App.css'
 
+import { Link } from "react-router-dom"
+
 const Resources = () => {
     return (
         <div className="resources">
@@ -28,6 +30,7 @@ const Resources = () => {
             <ul>
                 <li><a href="https://github.com/voidmaelstrom/codedeets">Codedeets</a></li>
             </ul>
+            <Link to="/">Go Back Home</Link> <br />
             </div>
         </div>
     )

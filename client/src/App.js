@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Navbar from './Components/Navbar/Navbar'
@@ -16,8 +15,6 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import CurrentUserProvider from './contexts/CurrentUser';
 
-
-
 const App = () => {
   
   // useState variable for posts data
@@ -34,8 +31,6 @@ const App = () => {
     
   }, [])
 
-
- 
   return (
     <CurrentUserProvider>
     <div className="container">
