@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom"
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 const Form = () => {
 
@@ -13,11 +14,14 @@ const Form = () => {
   //POST call
   function handleSubmit(e) {
     e.preventDefault()
+    const token = `${localStorage.getItem('token')}`
+    const result = jwt_decode(token)
+    const { id } = result
     const url = 'http://localhost:5000/posts'
     const formData = new FormData()
     formData.append('file', file)
     formData.append('tag', 'TestingTagPostCreate')
-    formData.append('user_id', 3)
+    formData.append('user_id', id)
     formData.append('fileName', file.name)
     const config = {
       headers: {

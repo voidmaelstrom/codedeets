@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 export const CurrentUser = createContext()
 
 function CurrentUserProvider({ children }) {
