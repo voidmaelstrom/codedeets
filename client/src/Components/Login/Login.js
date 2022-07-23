@@ -16,50 +16,27 @@ const Login = () => {
         email: '',
         password: ''
     })
-    //Keeping err state here for later use
-    //const [err, setErrMessage] = useState(null)
+    
     const { setCurrentUser } = useContext(CurrentUser)
-/* Not working with state
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch('http://localhost:5050/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'applicaiton/json'
-            },
-            body: JSON.stringify(userAuth)
-        })
-        const data = await response.json()
 
-        if(response.status === 200) {
-            setCurrentUser(data.user)
-            history.push('/')
-        }else {
-            setErrMessage(data.message)
+        try{
+            await axios({
+                method: "post",
+                url: "http://localhost:5000/auth",
+                data: userAuth
+            })
+            .then(response => {
+                setCurrentUser(response.data.user)
+                localStorage.setItem('token', response.data.token)
+                handleClose()
+            })
+        }catch(err){
             console.log(err)
         }
-    } 
-*/
-
-const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    try{
-        await axios({
-            method: "post",
-            url: "http://localhost:5000/auth",
-            data: userAuth
-        })
-        .then(response => {
-            setCurrentUser(response.data.user)
-            localStorage.setItem('token', response.data.token)
-            handleClose()
-        })
-    }catch(err){
-        console.log(err)
     }
-}
-
 
     return(
     <div>
