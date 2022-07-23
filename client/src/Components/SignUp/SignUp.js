@@ -70,11 +70,25 @@ const handleLogin = async (newUser) => {
                 data: user
             })
             .then(response => {               
-                console.log(response)
                 setCurrentUser(response.data[0])
                 handleClose()
             }
         )
+        }catch(err){
+            console.log(err)
+        }
+
+        try{
+            await axios({
+                method: "post",
+                url: "http://localhost:5000/auth",
+                data: user
+            })
+            .then(response => {
+                setCurrentUser(response.data.user)
+                localStorage.setItem('token', response.data.token)
+                handleClose()
+            })
         }catch(err){
             console.log(err)
         }
