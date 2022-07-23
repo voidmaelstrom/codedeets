@@ -41,7 +41,7 @@
 }
 
 .userpage {
-    background-color: #D3D3D3;
+    background-color: #536B70;
     height: 50%;
     width: 79vw;
     display: grid;
@@ -52,7 +52,7 @@
 }
 
 .userbio {
-    background-color: aliceblue;
+    background-color: whitesmoke;
     grid-column: 1 / 2;
     text-align: center;
     align-content: center;
@@ -64,6 +64,12 @@
     align-items: center;
 }
 
+.userLinks{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 
 .userlinked {
     background-color: rgb(187, 204, 248);
@@ -105,6 +111,12 @@ a {
     font-weight: 700;
     text-align: center;
 }
+
+
+
+
+/* CSS Grid Layout: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout */
+
 /* Mobile Media Queries */
 /* Implement Grid format if browser allows it */
 @media(grid: 0) {
@@ -169,7 +181,7 @@ a {
         }
 
         .username {
-            background-color: rgb(250, 150, 150);
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -267,13 +279,13 @@ a {
         }
 
         .userbio {
-            background-color: aliceblue;
+           
             grid-column: 1 / 4;
             text-align: center;
         }
 
         .username {
-            background-color: rgb(250, 150, 150);
+            
             display: flex;
             justify-content: center;
             align-items: center;

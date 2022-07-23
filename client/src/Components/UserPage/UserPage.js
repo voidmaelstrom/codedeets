@@ -4,7 +4,6 @@ import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
 import { Link } from "react-router-dom"
 
-import '../../App.css'
 
 const UserPage = () => {
     const { id } = useParams()
@@ -32,6 +31,7 @@ const UserPage = () => {
                 <h3>Biography</h3>
                 {userPage.bio}
             </div>
+            <div className='userLinks'>
                 <div className='userLinked'>
                 <Button variant="contained" size="medium">
                     <a href={userPage.linkedin}>LinkedIn</a>
@@ -47,7 +47,7 @@ const UserPage = () => {
                     <a href={userPage.website}>Portfolio</a>
                 </Button>
                 </div>
-
+                </div>
             <Link to="/">Go Back Home</Link> <br />
         </div>
     )
