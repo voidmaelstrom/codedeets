@@ -7,12 +7,14 @@ auth.post('/', async (req, res) => {
     
     const name = req.body.name;
     let sql = "SELECT * FROM public.user WHERE name = $1 OR email = $1";
-    let user = await client.query(sql, [name])
+    let user = await client.query(sql, [req.body.name])
 
     user = user.rows[0]
-    //console.log(user.password)
+    const userPass = req.body.password
+    console.log(`user pass: ${user.password}`)
+    console.log(`req pass: ${req.body.password}`)
 
-    if (!user || !await bcrypt.compare(req.body.password, user.password)) {
+    if (!user || !await bcrypt.compare(userPass, user.password)) {
         res.status(404).json({
             message: 'Could not find a user with the provided username and password'
         })

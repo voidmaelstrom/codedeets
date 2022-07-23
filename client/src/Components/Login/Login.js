@@ -18,7 +18,7 @@ const Login = () => {
     })
     //Keeping err state here for later use
     //const [err, setErrMessage] = useState(null)
-    const { setCurrentUser } = useContext(CurrentUser)
+    const { setCurrentUser, currentUser } = useContext(CurrentUser)
 /* Not working with state
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -48,13 +48,12 @@ const handleSubmit = async (e) => {
     try{
         await axios({
             method: "post",
-            url: "http://localhost:5050/auth",
+            url: "http://localhost:5000/auth",
             data: userAuth
         })
         .then(response => {
             setCurrentUser(response.data.user)
-            localStorage.setItem('token', response.data.token)
-    
+            localStorage.setItem('token', response.data.token)            
         })
     }catch(err){
         console.log(err)

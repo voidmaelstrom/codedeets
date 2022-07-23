@@ -1,6 +1,7 @@
 const user = require('express').Router();
 const {client} = require('../models/middleware')
 const bcrypt = require('bcrypt')
+const jwt = require('json-web-token')
 
 // get all users
 user.get('/', async (req, res) => {
@@ -42,11 +43,13 @@ user.post('/', async (req, res) => {
   let sql = 'INSERT INTO public.user(user_id, name, bio, email, github, linkedin, password, website, admin) VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)'
   client.query(sql, [name, bio, email, github, linkedin, password, website, admin], (err, result) => {
     let resSql = 'SELECT * FROM public.user WHERE user_id=(SELECT max(user_id) FROM public.user)'
-    client.query(resSql, (err, result) => {
+    client.query(resSql, async (err, result) => {
       if (err) {
         return console.error(err.message);
       } else {
-        res.json(result.rows)
+        const user = result.rows
+        const resultJWT = await jwt.encode(process.env.JWT_SECRET, { id: user.user_id })
+        res.json({user: user, token: resultJWT.value})
       }
     })
   })

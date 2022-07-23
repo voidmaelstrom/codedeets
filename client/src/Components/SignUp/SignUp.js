@@ -22,7 +22,7 @@ const SignUp = () => {
     })
     // Keeping here for later use
     //const [err, setErrMessage] = useState(null)
-    const { setCurrentUser } = useContext(CurrentUser)
+    const { setCurrentUser, currentUser } = useContext(CurrentUser)
 /*
 Not working with user state
     const handleSubmit = async (e) => {
@@ -40,24 +40,25 @@ Not working with user state
     } 
 */
 
-/* Testing this function
+
 const handleLogin = async (newUser) => {
+    console.log(newUser)
     try{
         await axios({
             method: "post",
-            url: "http://localhost:5050/auth",
+            url: "http://localhost:5000/auth",
             data: newUser
-        })
-        .then(response => {
+        }).then(response => {
             setCurrentUser(response.data.user)
             localStorage.setItem('token', response.data.token)
             handleClose()
+        
         })
     }catch(err){
-        console.log(err)
+        console.log(err.response)
     }
 }
-*/
+
 
 
     const handleSubmit = async (e) => {
@@ -66,12 +67,14 @@ const handleLogin = async (newUser) => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5050/user",
+                url: "http://localhost:5000/user",
                 data: user
             })
             .then(response => {               
-                console.log(response)
-                setCurrentUser(response.data[0])
+                //console.log(response.data.user[0])
+                //localStorage.setItem('token', response.data.token)
+                setCurrentUser(response.data.user[0])
+                handleLogin(response.data.user[0])
             }
         )
         }catch(err){
