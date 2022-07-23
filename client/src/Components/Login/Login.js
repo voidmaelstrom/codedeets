@@ -25,7 +25,7 @@ const Login = () => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5050/auth",
+                url: "http://localhost:5000/auth",
                 data: userAuth
             })
             .then(response => {
