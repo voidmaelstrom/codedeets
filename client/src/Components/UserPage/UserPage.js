@@ -4,13 +4,14 @@ import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
 import { Link } from "react-router-dom"
 
+
 const UserPage = () => {
     const { id } = useParams()
     const [userPage, setUserPage] = useState([])
 
     // General set up for API call on users
     useEffect(() => {
-        const API_URL = "http://localhost:5000/user/"
+        const API_URL = "http://localhost:5050/user/"
         const fetchUser = async () => {
             const response = await fetch(API_URL + `${id}`)
             const resUsers = await response.json()
@@ -25,28 +26,28 @@ const UserPage = () => {
                 <Avatar
                     sx={{ width: 150, height: 150 }}
                 >{userPage.name}</Avatar></div>
-            <div className="userbio">
+            
+            <div className='userBio'>
                 <h3>Biography</h3>
                 {userPage.bio}
             </div>
-            <div className="userlinked">
-                <h3>LinkedIn</h3>
+            <div className='userLinks'>
+                <div className='userLinked'>
                 <Button variant="contained" size="medium">
-                    <a href={userPage.linkedin}>Click Here</a>
+                    <a href={userPage.linkedin}>LinkedIn</a>
                 </Button>
-            </div>
-            <div className="usergithub">
-                <h3>Github</h3>
+                </div>
+                <div className='userGithub'>
                 <Button variant="contained" size="medium">
-                    <a href={userPage.github}>Click Here</a>
+                    <a href={userPage.github}>Github</a>
                 </Button>
-            </div>
-            <div className="userportfolio">
-                <h3>Personal Portfolio Website</h3>
+                </div>
+                <div className='userPortfolio'>
                 <Button variant="contained" size="medium">
-                    <a href={userPage.website}>Click Here</a>
+                    <a href={userPage.website}>Portfolio</a>
                 </Button>
-            </div>
+                </div>
+                </div>
             <Link to="/">Go Back Home</Link> <br />
         </div>
     )

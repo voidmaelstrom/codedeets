@@ -27,7 +27,7 @@ const SignUp = () => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5000/user",
+                url: "http://localhost:5050/user",
                 data: user
             })
             .then(response => {               
