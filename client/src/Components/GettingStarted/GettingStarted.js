@@ -4,7 +4,6 @@
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
 import { Link } from "react-router-dom"
-import {renderData} from '../../helper'
 
 const GettingStarted = (props) => {
 
