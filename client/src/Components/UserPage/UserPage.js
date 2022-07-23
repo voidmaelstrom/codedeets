@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
+import { Link } from "react-router-dom"
 
 
 const UserPage = () => {
@@ -47,6 +48,7 @@ const UserPage = () => {
                     <a href={userPage.website}>Click Here</a>
                 </Button>
             </div>
+            <Link to="/">Go Back Home</Link> <br />
         </div>
     )
 }
