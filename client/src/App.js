@@ -35,7 +35,7 @@ const App = () => {
     <CurrentUserProvider>
     <div className="container">
       <Router>
-        <Navbar />
+        <Navbar sx={{maxHeight:'20%'}} />
         <UserList />
         {/* Div container where all routed components will render */}
         <div className="display">

@@ -3,12 +3,24 @@
 /* Future CSS for Mobile Media Queries */
 /* ... */
 
+.resources{
+    background-color: #d3d3d3;
+    border-radius: 20px;
+    width: 50%;
+}
+
+.mdForm{
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    width: 50%;
+}
+
 .container {
-    background-color: aquamarine;
-    height: 100vh; /* Use 100% of the view window height*/
-    width: 100vw; /* Use 100% of the view window width*/
+    background-color: #212F45;
+    height: 100%; /* Use 100% of the view window height*/
+    width: 100%; /* Use 100% of the view window width*/
     display: grid;
-    grid-template: .25fr 5fr .25fr / 1fr 4fr;
+    grid-template: .10fr 5fr .25fr / 1fr 4fr;
     gap: 10px; /* Spacing around grid components */
     grid-template-areas: /* Specify the template area below */
     "navbar navbar"
@@ -22,7 +34,7 @@
 }
 
 .users {
-    background-color: rgb(164, 245, 98);
+    background-color: #1B3A4B;
     grid-area: users;
     text-align: center;
     list-style-type: none;

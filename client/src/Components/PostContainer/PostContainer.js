@@ -6,7 +6,7 @@ const PostContainer = (props) => {
     const display = props.data.map((data, i) => {
 
         return (
-                <Grid key={i} item xs={12} sm={6} md={4}>
+                <Grid key={i} item xs={12} sm={6} md={8}>
                     <Post data={data} key={i} value={i} />
                 </Grid>
         )

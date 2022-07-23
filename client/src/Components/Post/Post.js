@@ -28,9 +28,6 @@ const Post = (props) => {
           {props.data.tag}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </React.Fragment>
   );
 

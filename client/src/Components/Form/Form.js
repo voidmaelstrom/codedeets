@@ -32,9 +32,10 @@ const Form = () => {
 
 
   return (
-    <div className="form">
+
+    <div className="mdForm">
       <form onSubmit={handleSubmit}>
-        <h1>File Upload Test</h1>
+        <h1>Upload your .md file here!</h1>
         <input type="file" name="fileName" onChange={handleChange} />
         <button type="submit">Upload</button>
       </form>
@@ -46,3 +47,4 @@ const Form = () => {
 };
 
 export default Form;
+

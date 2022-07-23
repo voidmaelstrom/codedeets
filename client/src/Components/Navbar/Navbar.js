@@ -5,8 +5,8 @@ import { Toolbar, Box, Button, IconButton, ThemeProvider} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import SignUp from '../SignUp/SignUp';
 import { theme } from './theme'
+import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
 import {CurrentUser} from '../../contexts/CurrentUser'
 
@@ -17,8 +17,6 @@ let linksArray = ['/gettingstarted', '/resources', '/form']
 
 
 const Navbar = () => {
-
-
 
     const { currentUser } = useContext(CurrentUser)
 
@@ -60,11 +58,10 @@ const Navbar = () => {
                         <Toolbar disableGutters>
 
                             {/* DESKTOP UI FORMAT */}
+                            <Link style={{textDecoration: 'none', color: 'white'}} to="/">
                             <Typography
-                                variant='h5'
-                                noWrap
-                                component='a'
-                                href='/'
+                                variant='h4'
+                                noWrap                           
                                 sx={{
                                     mr: 5,
                                     display: { xs: 'none', md: 'flex' },
@@ -75,10 +72,11 @@ const Navbar = () => {
                             >
                                 Codedeets
                             </Typography>
+                            </Link>
 
                             {/* MOBILE UI FORMAT */}
                             <Typography
-                                variant='h5'
+                                variant='h4'
                                 noWrap
                                 component="a"
                                 href="/"
@@ -95,14 +93,16 @@ const Navbar = () => {
                             </Typography>
 
                             {/* DESKTOP UI FORMAT for Pages Links on Navbar*/}
-                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Box sx={{ flexGrow: 1 ,display: { xs: 'none', md: 'flex' } }}>
                                 {pages.map((page, i) => (
-                                    <Button
+                                    <Typography
+                                        variant = 'h6'                                      
+                                        color='inherit'
                                         key={page}
-                                        sx={{ my: 2, color: 'white', display: 'flex', fontWeight: 700 }}
+                                        sx={{ mr: 3, textDecoration: 'none' ,display: 'flex', fontWeight: 700 }}
                                     >
-                                        <Link to={linksArray[i] || '#'}>{page}</Link>
-                                    </Button>
+                                        <Link style={{textDecoration: 'none', color: 'white'}} to={linksArray[i] || '#'}>{page}</Link>
+                                    </Typography>
                                 ))}
                             </Box>
 
@@ -114,14 +114,10 @@ const Navbar = () => {
                                 >
                                     <MenuIcon fontSize='large' />
                                 </IconButton>
-                            </Box>
-                            
+                            </Box>                           
                             {loginActions}
-
                         </Toolbar>
-
                     </Container>
-
                 </AppBar>
             </ThemeProvider>
         </div>
