@@ -105,3 +105,217 @@ a {
     font-weight: 700;
     text-align: center;
 }
+/* Mobile Media Queries */
+/* Implement Grid format if browser allows it */
+@media(grid: 0) {
+
+    /* Mobile formatting - layout disappers under min screen width */
+    @media (min-width: 768px) {
+        .resources {
+            background-color: #d3d3d3;
+            border-radius: 20px;
+            width: 50%;
+        }
+
+        .mdForm {
+            background-color: #d3d3d3;
+            border-radius: 15px;
+            width: 50%;
+        }
+
+        .container {
+            background-color: #212F45;
+            height: 100%;
+            /* Use 100% of the view window height*/
+            width: 100%;
+            /* Use 100% of the view window width*/
+            display: grid;
+            grid-template: .10fr 5fr .25fr / 1fr 4fr;
+            gap: 10px;
+            /* Spacing around grid components */
+            grid-template-areas:
+                /* Specify the template area below */
+                "navbar navbar"
+                "users posts"
+                "footer footer";
+        }
+
+        .navbar {
+            /* background-color: rgb(215, 250, 247);  */
+            grid-area: navbar;
+        }
+
+        .users {
+            background-color: #1B3A4B;
+            grid-area: users;
+            text-align: center;
+            list-style-type: none;
+        }
+
+        .userpage {
+            background-color: antiquewhite;
+            height: 50vh;
+            width: 79vw;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+        }
+
+        .userbio {
+            background-color: aliceblue;
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .username {
+            background-color: rgb(250, 150, 150);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .userlinked {
+            background-color: rgb(187, 204, 248);
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .usergithub {
+            background-color: aqua;
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .userportfolio {
+            background-color: rgb(201, 157, 243);
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .posts {
+            background-color: antiquewhite;
+            grid-area: posts;
+        }
+
+        .footer {
+            background-color: rgb(105, 185, 238);
+            grid-area: footer;
+        }
+
+        .error404,
+        img {
+            width: 500px;
+            height: 500px;
+            object-fit: contain;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        .resources {
+            background-color: #d3d3d3;
+            border-radius: 20px;
+            width: 50%;
+        }
+
+        .mdForm {
+            background-color: #d3d3d3;
+            border-radius: 15px;
+            width: 50%;
+        }
+
+        .container {
+            background-color: #212F45;
+            height: 100%;
+            /* Use 100% of the view window height*/
+            width: 100%;
+            /* Use 100% of the view window width*/
+            display: grid;
+            grid-template: .10fr 5fr .25fr / 1fr 4fr;
+            gap: 10px;
+            /* Spacing around grid components */
+            grid-template-areas:
+                /* Specify the template area below */
+                "navbar navbar"
+                "users posts"
+                "footer footer";
+        }
+
+        .navbar {
+            /* background-color: rgb(215, 250, 247);  */
+            grid-area: navbar;
+        }
+
+        .users {
+            background-color: #1B3A4B;
+            grid-area: users;
+            text-align: center;
+            list-style-type: none;
+        }
+
+        .userpage {
+            background-color: antiquewhite;
+            height: 50vh;
+            width: 79vw;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+        }
+
+        .userbio {
+            background-color: aliceblue;
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .username {
+            background-color: rgb(250, 150, 150);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .userlinked {
+            background-color: rgb(187, 204, 248);
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .usergithub {
+            background-color: aqua;
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .userportfolio {
+            background-color: rgb(201, 157, 243);
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        .posts {
+            background-color: antiquewhite;
+            grid-area: posts;
+        }
+
+        .footer {
+            background-color: rgb(105, 185, 238);
+            grid-area: footer;
+        }
+
+        .error404,
+        img {
+            width: 500px;
+            height: 500px;
+            object-fit: contain;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

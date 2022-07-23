@@ -34,7 +34,7 @@ const Login = () => {
                 handleClose()
             })
         }catch(err){
-            console.log(err)
+            console.log(err.response.data)
         }
     }
 

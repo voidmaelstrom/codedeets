@@ -51,7 +51,7 @@ const SignUp = () => {
                 handleClose()
             })
         }catch(err){
-            console.log(err)
+            console.log(err.response.data)
         }
     }
 
