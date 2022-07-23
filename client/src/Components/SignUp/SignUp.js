@@ -9,7 +9,6 @@ const SignUp = () => {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-
     const [ user, setUser ] = useState({
         name: '',
         password: '',
@@ -20,45 +19,7 @@ const SignUp = () => {
         bio: '',
         admin: false
     })
-    // Keeping here for later use
-    //const [err, setErrMessage] = useState(null)
     const { setCurrentUser } = useContext(CurrentUser)
-/*
-Not working with user state
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        console.log(user)
-        const response = await fetch('http://localhost:5050/user', {
-            method: 'POST',
-            header: {
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify(user)
-        })
-        console.log(response)
-        history.push('/')
-    } 
-*/
-
-/* Testing this function
-const handleLogin = async (newUser) => {
-    try{
-        await axios({
-            method: "post",
-            url: "http://localhost:5050/auth",
-            data: newUser
-        })
-        .then(response => {
-            setCurrentUser(response.data.user)
-            localStorage.setItem('token', response.data.token)
-            handleClose()
-        })
-    }catch(err){
-        console.log(err)
-    }
-}
-*/
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -93,7 +54,6 @@ const handleLogin = async (newUser) => {
             console.log(err)
         }
     }
-
 
     return(
     <div>

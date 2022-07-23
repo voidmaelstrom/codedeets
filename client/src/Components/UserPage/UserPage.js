@@ -4,7 +4,6 @@ import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
 import { Link } from "react-router-dom"
 
-
 const UserPage = () => {
     const { id } = useParams()
     const [userPage, setUserPage] = useState([])

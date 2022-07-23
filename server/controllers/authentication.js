@@ -49,7 +49,5 @@ auth.get('/profile', async (req,res) => {
     }
 })
 client.end;
+
 module.exports = auth
-
-
-
