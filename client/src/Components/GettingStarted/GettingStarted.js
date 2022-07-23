@@ -3,6 +3,7 @@
 
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
+import { Link } from "react-router-dom"
 import {renderData} from '../../helper'
 
 const GettingStarted = (props) => {
@@ -16,6 +17,8 @@ const GettingStarted = (props) => {
                 onChange={setValue}
             />
             <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+            <br/>
+            <Link to="/">Go Back Home</Link> 
         </div>
     );
 }
