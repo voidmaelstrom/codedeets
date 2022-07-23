@@ -92,6 +92,3 @@ npm start
 ```
 
 If all goes well, you should see your browser load routed to `localhost:3000` with the UI present.
-
-
-

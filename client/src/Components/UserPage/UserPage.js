@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import { Button } from '@mui/material'
 
-
 const UserPage = () => {
     const { id } = useParams()
     const [userPage, setUserPage] = useState([])
