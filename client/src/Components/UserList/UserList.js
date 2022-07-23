@@ -11,7 +11,7 @@ const UserList = () => {
     // General set up for API call on users
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await fetch("http://localhost:5050/user")
+            const response = await fetch("http://localhost:5000/user")
             const resUsers = await response.json()
             setUsers(resUsers)
             //console.log(resUsers)

@@ -17,7 +17,7 @@ const Form = () => {
     const token = `${localStorage.getItem('token')}`
     const result = jwt_decode(token)
     const { id } = result
-    const url = 'http://localhost:5050/posts'
+    const url = 'http://localhost:5000/posts'
     const formData = new FormData()
     formData.append('file', file)
     formData.append('tag', 'TestingTagPostCreate')
