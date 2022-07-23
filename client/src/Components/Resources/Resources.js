@@ -1,7 +1,9 @@
+import '../../App.css'
 
 const Resources = () => {
     return (
         <div className="resources">
+            <div>
             <h1>External Resources</h1>
             <h2>Backend</h2>
             <ul>
@@ -26,6 +28,7 @@ const Resources = () => {
             <ul>
                 <li><a href="https://github.com/voidmaelstrom/codedeets">Codedeets</a></li>
             </ul>
+            </div>
         </div>
     )
 }

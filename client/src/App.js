@@ -26,7 +26,7 @@ const App = () => {
   // General set up for API call on posts
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/posts')
+      const response = await fetch('http://localhost:5050/posts')
       const resData = await response.json()
       setData(resData)
     }
@@ -40,7 +40,7 @@ const App = () => {
     <CurrentUserProvider>
     <div className="container">
       <Router>
-        <Navbar />
+        <Navbar sx={{maxHeight:'20%'}} />
         <UserList />
         {/* Div container where all routed components will render */}
         <div className="display">

@@ -10,7 +10,7 @@ const UserPage = () => {
 
     // General set up for API call on users
     useEffect(() => {
-        const API_URL = "http://localhost:5000/user/"
+        const API_URL = "http://localhost:5050/user/"
         const fetchUser = async () => {
             const response = await fetch(API_URL + `${id}`)
             const resUsers = await response.json()

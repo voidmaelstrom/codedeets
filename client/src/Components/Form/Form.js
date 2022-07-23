@@ -46,7 +46,7 @@ function handleChange(e){
 function handleSubmit(e) {
   e.preventDefault()
   // const url = 'http://localhost:5000/posts/9/uploadFile'
-  const url = 'http://localhost:5000/posts'
+  const url = 'http://localhost:5050/posts'
   const formData = new FormData()
   formData.append('file', file)
   formData.append('tag', 'TestingTagPostCreate')
@@ -64,12 +64,13 @@ function handleSubmit(e) {
 
 
   return (
+    <div className='mdForm'>
     <form onSubmit={handleSubmit}>
-      <h1>File Upload Test</h1>
+      <h1>Upload your .md file here!</h1>
       <input type="file" name="fileName" onChange={handleChange}/>
       <button type="submit">Upload</button>
     </form>
-
+    </div>
   )
 };
 
