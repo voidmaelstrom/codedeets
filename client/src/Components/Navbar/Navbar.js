@@ -20,10 +20,11 @@ const Navbar = () => {
 
 
 
-    const { currentUser } = useContext(CurrentUser)
+    const { currentUser, setCurrentUser } = useContext(CurrentUser)
 
     const handleLogout = (e) => {
         localStorage.removeItem('token')
+        setCurrentUser(null)
     }
     let loginActions = (
        <>

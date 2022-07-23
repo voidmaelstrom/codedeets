@@ -46,7 +46,7 @@ function handleChange(e){
 function handleSubmit(e) {
   e.preventDefault()
   // const url = 'http://localhost:5000/posts/9/uploadFile'
-  const url = 'http://localhost:5000/posts'
+  const url = 'http://localhost:5050/posts'
   const formData = new FormData()
   formData.append('file', file)
   formData.append('tag', 'TestingTagPostCreate')

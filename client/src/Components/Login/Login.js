@@ -1,4 +1,4 @@
-import { Button, Modal, Box, TextField} from "@mui/material"
+import { Button, Modal, Box, TextField, Dialog} from "@mui/material"
 import { useState, useContext } from "react"
 import { CurrentUser } from "../../contexts/CurrentUser"
 
@@ -41,19 +41,20 @@ const Login = () => {
     } 
 */
 
+
 const handleSubmit = async (e) => {
     e.preventDefault()
 
     try{
         await axios({
             method: "post",
-            url: "http://localhost:5000/auth",
+            url: "http://localhost:5050/auth",
             data: userAuth
         })
         .then(response => {
             setCurrentUser(response.data.user)
             localStorage.setItem('token', response.data.token)
-            handleClose()
+    
         })
     }catch(err){
         console.log(err)

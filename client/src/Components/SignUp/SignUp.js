@@ -66,13 +66,12 @@ const handleLogin = async (newUser) => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5000/user",
+                url: "http://localhost:5050/user",
                 data: user
             })
             .then(response => {               
                 console.log(response)
                 setCurrentUser(response.data[0])
-                handleClose()
             }
         )
         }catch(err){
