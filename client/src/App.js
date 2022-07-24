@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-
 import Navbar from './Components/Navbar/Navbar'
 import PostContainer from './Components/PostContainer/PostContainer';
 import UserList from './Components/UserList/UserList';
@@ -23,7 +22,7 @@ const App = () => {
   // General set up for API call on posts
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/posts')
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}posts`)
       const resData = await response.json()
       setData(resData)
     }

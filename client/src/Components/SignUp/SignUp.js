@@ -27,7 +27,7 @@ const SignUp = () => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5000/user",
+                url: `${process.env.REACT_APP_SERVER_URL}user`,
                 data: user
             })
             .then(response => {               
@@ -42,7 +42,7 @@ const SignUp = () => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5000/auth",
+                url: `${process.env.REACT_APP_SERVER_URL}auth`,
                 data: user
             })
             .then(response => {

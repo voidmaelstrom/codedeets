@@ -37,7 +37,7 @@ const Navbar = () => {
             <>
             <Button 
             sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
-            href={`http://localhost:3000/user/${currentUser[0].user_id}`}>{currentUser[0].name}</Button>
+            href={`${process.env.REACT_APP_SERVER_URL}user/${currentUser[0].user_id}`}>{currentUser[0].name}</Button>
             <Button 
             sx={{ my: 2, color: 'white', display: 'block', fontWeight: 700 }}
             onClick={handleLogout}>

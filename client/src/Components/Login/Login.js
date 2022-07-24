@@ -25,7 +25,7 @@ const Login = () => {
         try{
             await axios({
                 method: "post",
-                url: "http://localhost:5000/auth",
+                url: `${process.env.REACT_APP_SERVER_URL}auth`,
                 data: userAuth
             })
             .then(response => {
