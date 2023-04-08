@@ -2,6 +2,7 @@
 App to support collaboration with many peeps on code and other related interests
 
 ## App Summary
+Access the app at this URL:  http://codedeets.us-east-2.elasticbeanstalk.com/
 This project is a small app meant for developers to collaborate on ideas and provide
 informative posts on how to solve problems. The main reason for the app is to allow
 a central resource for developers and up-and-coming coders to share resources and
